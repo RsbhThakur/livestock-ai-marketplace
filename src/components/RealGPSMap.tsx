@@ -40,22 +40,28 @@ export default function RealGPSMap() {
   const DEFAULT_CENTER: [number, number] = [19.5, 75.8];
   const DEFAULT_ZOOM = 7;
 
-  // Tile Providers
-  const tileProviders: Record<TileTheme, { url: string; attribution: string; maxZoom: number }> = {
+  // Tile Providers (100% Free & Open-Access, Zero API Key Required, Zero Watermarks)
+  const tileProviders: Record<
+    TileTheme,
+    { url: string; attribution: string; maxZoom: number; subdomains?: string[] }
+  > = {
     satellite: {
-      url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-      attribution: 'Esri World Imagery &bull; DigitalGlobe, GeoEye, Earthstar Geographics',
-      maxZoom: 18,
+      url: 'https://mt{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}',
+      attribution: '&copy; Google Hybrid Satellite Imagery',
+      maxZoom: 20,
+      subdomains: ['0', '1', '2', '3'],
     },
     street: {
-      url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-      attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+      url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      attribution: '&copy; OpenStreetMap contributors',
       maxZoom: 19,
+      subdomains: ['a', 'b', 'c'],
     },
     tactical: {
       url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-      attribution: '&copy; OpenStreetMap contributors &copy; CARTO Dark Matter',
+      attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
       maxZoom: 19,
+      subdomains: ['a', 'b', 'c', 'd'],
     },
   };
 
@@ -70,9 +76,11 @@ export default function RealGPSMap() {
       attributionControl: false,
     });
 
-    const initialTiles = L.tileLayer(tileProviders[tileTheme].url, {
-      attribution: tileProviders[tileTheme].attribution,
-      maxZoom: tileProviders[tileTheme].maxZoom,
+    const currentProvider = tileProviders[tileTheme];
+    const initialTiles = L.tileLayer(currentProvider.url, {
+      attribution: currentProvider.attribution,
+      maxZoom: currentProvider.maxZoom,
+      subdomains: currentProvider.subdomains || ['a', 'b', 'c'],
     }).addTo(map);
 
     tileLayerRef.current = initialTiles;
@@ -106,9 +114,11 @@ export default function RealGPSMap() {
 
     mapInstanceRef.current.removeLayer(tileLayerRef.current);
 
-    const newTiles = L.tileLayer(tileProviders[tileTheme].url, {
-      attribution: tileProviders[tileTheme].attribution,
-      maxZoom: tileProviders[tileTheme].maxZoom,
+    const currentProvider = tileProviders[tileTheme];
+    const newTiles = L.tileLayer(currentProvider.url, {
+      attribution: currentProvider.attribution,
+      maxZoom: currentProvider.maxZoom,
+      subdomains: currentProvider.subdomains || ['a', 'b', 'c'],
     }).addTo(mapInstanceRef.current);
 
     tileLayerRef.current = newTiles;

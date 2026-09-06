@@ -49,7 +49,7 @@ export default function HotspotMap() {
             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
           </span>
           <span className="text-emerald-600 dark:text-emerald-400">
-            ESRI SATELLITE FEED ACTIVE
+            LIVE GPS SATELLITE FEED (ZERO-KEY OPEN ACCESS)
           </span>
         </div>
       </div>
