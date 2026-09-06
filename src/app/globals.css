@@ -1,3 +1,5 @@
+@import "leaflet/dist/leaflet.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -22,4 +24,43 @@ body {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Leaflet Custom GPS Overrides */
+.leaflet-container {
+  font-family: inherit;
+  background-color: #0b1329 !important;
+}
+
+.gps-radar-sweep {
+  animation: radarSweep 4s linear infinite;
+  transform-origin: center center;
+}
+
+@keyframes radarSweep {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.gps-pulse-ring {
+  animation: gpsPulse 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+}
+
+@keyframes gpsPulse {
+  0% {
+    r: 12;
+    opacity: 0.8;
+  }
+  70% {
+    r: 32;
+    opacity: 0;
+  }
+  100% {
+    r: 32;
+    opacity: 0;
+  }
 }
