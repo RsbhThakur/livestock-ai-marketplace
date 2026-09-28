@@ -14,6 +14,7 @@ import TriageModal from '@/components/TriageModal';
 import CartDrawer from '@/components/CartDrawer';
 import CheckoutModal from '@/components/CheckoutModal';
 import OrderSuccessModal from '@/components/OrderSuccessModal';
+import MultimodalStudio from '@/components/MultimodalStudio';
 import {
   ShieldCheck,
   Truck,
@@ -88,7 +89,7 @@ export default function Home() {
   });
 
   return (
-    <div className="flex-1 flex flex-col">
+    <div className="flex-1 flex flex-col bg-slate-950 text-white min-h-screen">
       {/* 1. Global Header & Disclaimer */}
       <Header />
 
@@ -102,6 +103,36 @@ export default function Home() {
             {/* Hero Banner with Quick Actions */}
             <HeroBanner />
 
+            {/* Flagship Interactive Multi-Modal AI Diagnostic Studio Section */}
+            <section id="ai-studio" className="py-12 md:py-16 border-b border-slate-800 bg-slate-950/80 relative">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                  <div>
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-800 text-cyan-300 text-xs font-bold mb-2">
+                      <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+                      <span>Zero-Barrier Multi-Modal AI</span>
+                    </div>
+                    <h2 className="text-2xl sm:text-3xl font-black text-white">
+                      Live Multi-Modal AI Diagnostic Studio
+                    </h2>
+                    <p className="text-xs sm:text-sm text-slate-400 mt-1 max-w-xl">
+                      Speak cattle symptoms in Marathi, Hindi, or English, or upload lesion photos for instant CLIP ViT-L/14 classification and bounding box telemetry.
+                    </p>
+                  </div>
+
+                  <button
+                    onClick={() => setIsTriageOpen(true)}
+                    className="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-cyan-300 text-xs font-bold border border-slate-700 transition flex items-center gap-1.5 self-start sm:self-auto shadow-md"
+                  >
+                    <span>Full Clinical Predictor Modal</span>
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
+
+                <MultimodalStudio />
+              </div>
+            </section>
+
             {/* Category & Species Filter Bar */}
             <CategoryBar
               selectedSpeciesFilter={selectedSpeciesFilter}
@@ -109,25 +140,25 @@ export default function Home() {
             />
 
             {/* Marketplace Grid Section */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
               {/* Active Emergency Outbreak Alert Banner if in Nashik / High zone */}
-              <div className="p-4 bg-gradient-to-r from-amber-500/10 via-rose-500/10 to-transparent border border-rose-300 dark:border-rose-900 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="p-4 bg-gradient-to-r from-rose-950/40 via-slate-900/60 to-slate-950 border border-rose-900/60 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-md">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-rose-600 text-white rounded-xl shrink-0">
+                  <div className="p-2.5 bg-rose-600/90 text-white rounded-xl shrink-0 shadow-md shadow-rose-600/20">
                     <AlertTriangle className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-xs font-black uppercase tracking-wider text-rose-700 dark:text-rose-400">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-rose-300">
                       Regional Containment Advisory (Nashik & Pune Corridors)
                     </h4>
-                    <p className="text-xs text-slate-600 dark:text-slate-300">
+                    <p className="text-xs text-slate-300 mt-0.5">
                       Only livestock with active RFID vaccination stamps are cleared for district transport. Need rapid animal triage?
                     </p>
                   </div>
                 </div>
                 <button
                   onClick={() => setIsTriageOpen(true)}
-                  className="px-4 py-2 bg-slate-900 dark:bg-white text-white dark:text-slate-950 font-bold text-xs rounded-xl shrink-0 hover:bg-brand-700 transition-colors"
+                  className="px-4 py-2 bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs rounded-xl shrink-0 transition-all shadow-md shadow-rose-600/20"
                 >
                   Run Triage Now →
                 </button>
@@ -136,24 +167,24 @@ export default function Home() {
               {/* Section A: Verified Livestock Listings */}
               {(activeCategory === 'all' || activeCategory === 'livestock') && (
                 <div>
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center justify-between mb-5">
                     <div>
-                      <h2 className="text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
-                        <ShieldCheck className="w-5 h-5 text-emerald-600" />
+                      <h2 className="text-xl sm:text-2xl font-black text-white flex items-center gap-2">
+                        <ShieldCheck className="w-6 h-6 text-emerald-400" />
                         <span>AI-Certified Disease-Free Livestock</span>
                       </h2>
-                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                      <p className="text-xs text-slate-400 mt-1">
                         Each listing includes verifiable RFID ear-tag history, vaccination stamps, and veterinary health passports
                       </p>
                     </div>
-                    <span className="text-xs font-bold text-slate-400">
+                    <span className="text-xs font-bold text-slate-400 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-800">
                       {filteredLivestock.length} animals available
                     </span>
                   </div>
 
                   {filteredLivestock.length === 0 ? (
-                    <div className="p-8 text-center bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800">
-                      <p className="text-xs text-slate-500">No livestock listings match your filter criteria.</p>
+                    <div className="p-12 text-center bg-slate-900/60 rounded-2xl border border-slate-800">
+                      <p className="text-xs text-slate-400">No livestock listings match your filter criteria.</p>
                     </div>
                   ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -171,24 +202,24 @@ export default function Home() {
                 activeCategory === 'emergency' ||
                 activeCategory === 'tele-vet') && (
                 <div>
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center justify-between mb-5">
                     <div>
-                      <h2 className="text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
-                        <Sparkles className="w-5 h-5 text-amber-500" />
+                      <h2 className="text-xl sm:text-2xl font-black text-white flex items-center gap-2">
+                        <Sparkles className="w-6 h-6 text-cyan-400" />
                         <span>Veterinary Pharmaceuticals & Outbreak Emergency Packs</span>
                       </h2>
-                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                      <p className="text-xs text-slate-400 mt-1">
                         Prescription-grade veterinary medications, diagnostic dipsticks, and fast rural dispatch bundles
                       </p>
                     </div>
-                    <span className="text-xs font-bold text-slate-400">
+                    <span className="text-xs font-bold text-slate-400 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-800">
                       {filteredPharma.length} products listed
                     </span>
                   </div>
 
                   {filteredPharma.length === 0 ? (
-                    <div className="p-8 text-center bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800">
-                      <p className="text-xs text-slate-500">No veterinary products match your filter criteria.</p>
+                    <div className="p-12 text-center bg-slate-900/60 rounded-2xl border border-slate-800">
+                      <p className="text-xs text-slate-400">No veterinary products match your filter criteria.</p>
                     </div>
                   ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -201,34 +232,34 @@ export default function Home() {
               )}
 
               {/* Trust & Rural Service Badges */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-slate-200 dark:border-slate-800">
-                <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-brand-100 dark:bg-brand-950/80 text-brand-700 dark:text-brand-300 flex items-center justify-center shrink-0 font-bold">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-slate-800">
+                <div className="bg-slate-900/90 p-4 rounded-2xl border border-slate-800 flex items-center gap-3 shadow-md">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-950 text-emerald-400 flex items-center justify-center shrink-0 font-bold border border-emerald-800">
                     <ShieldCheck className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold text-slate-900 dark:text-white">100% Health Guarantee</h4>
-                    <p className="text-[11px] text-slate-500 dark:text-slate-400">All livestock pre-screened with digital RFID health passports</p>
+                    <h4 className="text-xs font-bold text-white">100% Health Guarantee</h4>
+                    <p className="text-[11px] text-slate-400">All livestock pre-screened with digital RFID health passports</p>
                   </div>
                 </div>
 
-                <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950/80 text-blue-700 dark:text-blue-300 flex items-center justify-center shrink-0 font-bold">
+                <div className="bg-slate-900/90 p-4 rounded-2xl border border-slate-800 flex items-center gap-3 shadow-md">
+                  <div className="w-10 h-10 rounded-xl bg-cyan-950 text-cyan-400 flex items-center justify-center shrink-0 font-bold border border-cyan-800">
                     <Truck className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold text-slate-900 dark:text-white">Rural Doorstep Delivery</h4>
-                    <p className="text-[11px] text-slate-500 dark:text-slate-400">Veterinary medicines dispatched directly to village farmgates</p>
+                    <h4 className="text-xs font-bold text-white">Rural Doorstep Delivery</h4>
+                    <p className="text-[11px] text-slate-400">Veterinary medicines dispatched directly to village farmgates</p>
                   </div>
                 </div>
 
-                <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/80 text-amber-700 dark:text-amber-300 flex items-center justify-center shrink-0 font-bold">
+                <div className="bg-slate-900/90 p-4 rounded-2xl border border-slate-800 flex items-center gap-3 shadow-md">
+                  <div className="w-10 h-10 rounded-xl bg-amber-950 text-amber-400 flex items-center justify-center shrink-0 font-bold border border-amber-800">
                     <HeartHandshake className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold text-slate-900 dark:text-white">Govt. Kisan Subsidy</h4>
-                    <p className="text-[11px] text-slate-500 dark:text-slate-400">20% automatic discount applied with code KISAN2026</p>
+                    <h4 className="text-xs font-bold text-white">Govt. Kisan Subsidy</h4>
+                    <p className="text-[11px] text-slate-400">20% automatic discount applied with code KISAN2026</p>
                   </div>
                 </div>
               </div>
