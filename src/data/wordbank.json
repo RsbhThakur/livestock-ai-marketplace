@@ -1,0 +1,1389 @@
+{
+  "wordbank": {
+    "fever": {
+      "model_key": "fever",
+      "severity_weight": 1,
+      "is_visually_detectable": "partial",
+      "category": "invisible",
+      "clip_prompts": [
+        "A photo of a cow or goat that looks lethargic and feverish",
+        "A photo of an animal shivering or trembling from high body temperature",
+        "A photo of a livestock animal with glassy, dull, unfocused eyes from fever",
+        "A photo of a cattle with ears drooping and body hunched from illness"
+      ],
+      "voice_phrases_en": [
+        "fever",
+        "high temperature",
+        "hot body",
+        "burning up",
+        "body hot",
+        "animal is very warm",
+        "seems feverish",
+        "high heat",
+        "pyrexia",
+        "the cow feels very hot when i touch it",
+        "body temperature is high"
+      ],
+      "voice_phrases_regional": {
+        "hindi": [
+          "bukhar",
+          "tez bukhar",
+          "shareer garam",
+          "taap"
+        ],
+        "marathi": [
+          "tap",
+          "taap ala",
+          "shareeer garma",
+          "bukhar"
+        ],
+        "tamil": [
+          "kaichal",
+          "juram",
+          "udal veppam"
+        ],
+        "telugu": [
+          "jwaram",
+          "vappu",
+          "deham venguta"
+        ],
+        "gujarati": [
+          "tav",
+          "bukhar",
+          "garam"
+        ],
+        "punjabi": [
+          "bukhar",
+          "tapp",
+          "garam body"
+        ]
+      },
+      "medical_synonyms": [
+        "pyrexia",
+        "hyperthermia",
+        "elevated body temperature"
+      ]
+    },
+    "coughing": {
+      "model_key": "coughing",
+      "severity_weight": 1,
+      "is_visually_detectable": "audio_video",
+      "category": "semi_visual",
+      "clip_prompts": [
+        "A photo of a cow or goat with its neck stretched out coughing",
+        "A photo of a livestock animal coughing with mouth open",
+        "A photo of cattle with mucus around mouth from coughing",
+        "A photo of a sheep or goat showing signs of respiratory distress with open mouth"
+      ],
+      "voice_phrases_en": [
+        "coughing",
+        "cough",
+        "keeps coughing",
+        "persistent cough",
+        "dry cough",
+        "wet cough",
+        "hacking cough",
+        "the animal coughs all night",
+        "making coughing noise",
+        "cough not stopping",
+        "has a bad cough"
+      ],
+      "voice_phrases_regional": {
+        "hindi": [
+          "khansi",
+          "khaansi",
+          "khaans raha hai"
+        ],
+        "marathi": [
+          "khasne",
+          "khas",
+          "khaas aahe"
+        ],
+        "tamil": [
+          "irumul",
+          "irumal"
+        ],
+        "telugu": [
+          "dagguta",
+          "daggutundo"
+        ],
+        "gujarati": [
+          "uksras",
+          "ukhadto"
+        ],
+        "punjabi": [
+          "khansi",
+          "khassi"
+        ]
+      },
+      "medical_synonyms": [
+        "tussis",
+        "respiratory cough",
+        "chronic cough",
+        "bovine cough"
+      ]
+    },
+    "nasal_discharge": {
+      "model_key": "nasal_discharge",
+      "severity_weight": 1,
+      "is_visually_detectable": "yes",
+      "category": "visual",
+      "clip_prompts": [
+        "A close-up photo of a cow with thick mucus dripping from its nose",
+        "A photo of a goat with clear or yellow discharge running from the nostrils",
+        "A photo of a livestock animal with a very runny nose",
+        "A photo of cattle with dried crusty mucus around the nose",
+        "A photo of a buffalo with blood-tinged nasal discharge",
+        "A photo of an animal with foam or froth coming from its nostrils"
+      ],
+      "voice_phrases_en": [
+        "runny nose",
+        "nasal discharge",
+        "mucus from nose",
+        "nose running",
+        "snot coming out",
+        "nose dripping",
+        "discharge from nostrils",
+        "liquid coming from nose",
+        "nose fluid",
+        "watery nose",
+        "bloody nose",
+        "thick mucus nose",
+        "dried crust on nose"
+      ],
+      "voice_phrases_regional": {
+        "hindi": [
+          "naak beh raha",
+          "naak se paani",
+          "naak se kuch nikal raha"
+        ],
+        "marathi": [
+          "naakatu pani",
+          "naak vahat aahe",
+          "naakave paani"
+        ],
+        "tamil": [
+          "mooku ottuthu",
+          "mooku thanni"
+        ],
+        "telugu": [
+          "nasupu kaaru tundi",
+          "mucu vastundi"
+        ],
+        "gujarati": [
+          "naku thi pani",
+          "nakhu vahe che"
+        ],
+        "punjabi": [
+          "nakkoo pani",
+          "nak waho"
+        ]
+      },
+      "medical_synonyms": [
+        "rhinorrhea",
+        "serous nasal exudate",
+        "mucopurulent nasal discharge"
+      ]
+    },
+    "weakness": {
+      "model_key": "weakness",
+      "severity_weight": 1,
+      "is_visually_detectable": "yes",
+      "category": "visual",
+      "clip_prompts": [
+        "A photo of a cow lying down and unable or unwilling to get up",
+        "A photo of a livestock animal that looks very weak and lethargic",
+        "A photo of a goat or sheep drooping its head, looking exhausted",
+        "A photo of cattle staggering or having difficulty walking",
+        "A photo of an animal with a drooped head and dull coat from weakness",
+        "A photo of livestock standing hunched with a bowed back due to weakness"
+      ],
+      "voice_phrases_en": [
+        "weak",
+        "weakness",
+        "lethargic",
+        "no energy",
+        "can not stand up",
+        "very tired",
+        "exhausted",
+        "listless",
+        "dull",
+        "not moving",
+        "laying down all the time",
+        "keeps falling",
+        "can barely walk",
+        "looks sick and weak",
+        "very pale and weak animal"
+      ],
+      "voice_phrases_regional": {
+        "hindi": [
+          "kamzor",
+          "uth nahi pa raha",
+          "thaka hua",
+          "nirbal"
+        ],
+        "marathi": [
+          "adkha",
+          "uthta nahi",
+          "thakala aahe",
+          "shaktihin"
+        ],
+        "tamil": [
+          "mela illama",
+          "thazha pada",
+          "valikuthu"
+        ],
+        "telugu": [
+          "balaheenanga",
+          "lekkaleru",
+          "lethalemu"
+        ],
+        "gujarati": [
+          "nabbad",
+          "ubha na thay",
+          "namali gayo"
+        ],
+        "punjabi": [
+          "kamzor",
+          "utha nahi sakda",
+          "uthna nahi"
+        ]
+      },
+      "medical_synonyms": [
+        "debility",
+        "asthenia",
+        "generalized weakness",
+        "downer cow",
+        "recumbency"
+      ]
+    },
+    "diarrhea": {
+      "model_key": "diarrhea",
+      "severity_weight": 2,
+      "is_visually_detectable": "yes",
+      "category": "visual",
+      "clip_prompts": [
+        "A photo of a cow with a heavily soiled and dirty tail from diarrhea",
+        "A photo of a goat with loose stool or liquid feces around its hindquarters",
+        "A photo of livestock with watery feces visible on the ground around it",
+        "A photo of a cattle with a dirty rear end stained with yellowish diarrhea",
+        "A photo of a calf with severe diarrhea and a matted soiled coat",
+        "A photo of a sheep with scour, showing soiled fleece around the rear"
+      ],
+      "voice_phrases_en": [
+        "diarrhea",
+        "loose stool",
+        "watery stool",
+        "runny poop",
+        "loose motions",
+        "stomach upset",
+        "loose droppings",
+        "liquid feces",
+        "diarrhoea",
+        "scours",
+        "loose bowel",
+        "passing water",
+        "smelly loose stool",
+        "bloody stool",
+        "blood in feces"
+      ],
+      "voice_phrases_regional": {
+        "hindi": [
+          "dast",
+          "patlaa potty",
+          "baar baar potty",
+          "jhada"
+        ],
+        "marathi": [
+          "joolap",
+          "shauchaas paani",
+          "julap",
+          "paani potty"
+        ],
+        "tamil": [
+          "pongiyal",
+          "kuzhaiya potty",
+          "seepu"
+        ],
+        "telugu": [
+          "visarjana",
+          "dast",
+          "neer potty"
+        ],
+        "gujarati": [
+          "jhada",
+          "patal jhada",
+          "ughal"
+        ],
+        "punjabi": [
+          "dast",
+          "patlaa",
+          "jhada"
+        ]
+      },
+      "medical_synonyms": [
+        "enteritis",
+        "bovine viral diarrhea",
+        "scours",
+        "dysentery",
+        "colitis"
+      ]
+    },
+    "loss_of_appetite": {
+      "model_key": "loss_of_appetite",
+      "severity_weight": 2,
+      "is_visually_detectable": "partial",
+      "category": "invisible",
+      "clip_prompts": [
+        "A photo of a cow standing near a full feed trough, not eating",
+        "A photo of a goat ignoring hay or feed placed in front of it",
+        "A photo of livestock turning away from grass or green fodder",
+        "A photo of an emaciated, thin animal that has not been eating",
+        "A photo of a cattle with a sunken flank due to not eating"
+      ],
+      "voice_phrases_en": [
+        "not eating",
+        "loss of appetite",
+        "refusing to eat",
+        "skipping feed",
+        "will not touch food",
+        "stopped grazing",
+        "no interest in food",
+        "eating less",
+        "anorexia",
+        "hasn't eaten since yesterday",
+        "ignoring fodder",
+        "not grazing",
+        "not drinking water",
+        "stopped chewing cud",
+        "no rumination"
+      ],
+      "voice_phrases_regional": {
+        "hindi": [
+          "khana nahi kha raha",
+          "bhojan tyag",
+          "chaara nahi kha raha"
+        ],
+        "marathi": [
+          "jevan nahi khat",
+          "chaara nahi khat",
+          "anna tyag"
+        ],
+        "tamil": [
+          "saapida marukkuthu",
+          "thirvu illai",
+          "javvu illai"
+        ],
+        "telugu": [
+          "tisukutu ledu",
+          "tinuta manesindu",
+          "melu manesindi"
+        ],
+        "gujarati": [
+          "khaatu nathi",
+          "bhukh nathi",
+          "charo nahi khato"
+        ],
+        "punjabi": [
+          "khanda nahi",
+          "khana chhadaya",
+          "nahi khaa raha"
+        ]
+      },
+      "medical_synonyms": [
+        "anorexia",
+        "inappetence",
+        "hyporexia",
+        "reduced feed intake"
+      ]
+    },
+    "reduced_milk_production": {
+      "model_key": "reduced_milk_production",
+      "severity_weight": 2,
+      "is_visually_detectable": "partial",
+      "category": "invisible",
+      "clip_prompts": [
+        "A photo of a cow with swollen, inflamed udder from mastitis",
+        "A photo of a dairy cow with udder that looks red or painful",
+        "A photo of a buffalo with engorged udder suggesting milk not being produced normally",
+        "A photo of a goat or sheep with a hard, lumpy udder"
+      ],
+      "voice_phrases_en": [
+        "less milk",
+        "reduced milk",
+        "milk dropped",
+        "not giving milk",
+        "milk production down",
+        "dry cow",
+        "milk has stopped",
+        "udder problem",
+        "milk is less than usual",
+        "sudden milk drop",
+        "mastitis",
+        "infected udder",
+        "hard udder",
+        "painful udder"
+      ],
+      "voice_phrases_regional": {
+        "hindi": [
+          "dudh kam ho gaya",
+          "dudh nahi de raha",
+          "dudh band",
+          "thaan mein sujan"
+        ],
+        "marathi": [
+          "doodh kami zale",
+          "doodh nahi deto",
+          "chalani kame"
+        ],
+        "tamil": [
+          "paal kurainchidchu",
+          "paal illai",
+          "mund vali"
+        ],
+        "telugu": [
+          "palu takkuva",
+          "palu ravatledu",
+          "pali thaginchindi"
+        ],
+        "gujarati": [
+          "dudh aayu nahi",
+          "dudh aaochhu thayoo",
+          "dudh band"
+        ],
+        "punjabi": [
+          "dudh ghat gaya",
+          "dudh nahi dinda",
+          "tann dukh"
+        ]
+      },
+      "medical_synonyms": [
+        "agalactia",
+        "hypogalactia",
+        "mastitis",
+        "decreased lactation"
+      ]
+    },
+    "skin_lesions": {
+      "model_key": "skin_lesions",
+      "severity_weight": 3,
+      "is_visually_detectable": "yes",
+      "category": "visual",
+      "clip_prompts": [
+        "A close-up photo of a cow with large lumpy nodules on its skin",
+        "A photo of livestock with visible sores, ulcers, or open wounds on the body",
+        "A photo of cattle with circular bald patches or ring-shaped lesions on skin",
+        "A photo of a goat with blisters or vesicles on the skin",
+        "A photo of a cow with pox marks or pustules across the body surface",
+        "A photo of a buffalo with skin covered in crusty, scabby lesions",
+        "A photo of an animal with raw, red, inflamed skin patches",
+        "A photo of livestock with warts, papillomas, or fungal patches on skin",
+        "A photo of cattle with lumpy skin disease showing prominent skin nodules",
+        "A photo of a goat with foot and mouth disease blisters on legs and mouth"
+      ],
+      "voice_phrases_en": [
+        "skin lesions",
+        "sores on skin",
+        "wounds on body",
+        "lumps on skin",
+        "skin disease",
+        "rashes",
+        "blisters",
+        "pox marks",
+        "warts",
+        "scabs",
+        "crusty skin",
+        "skin ulcers",
+        "open wounds",
+        "skin bumps",
+        "lumpy skin",
+        "skin infection",
+        "boils on skin",
+        "spots on skin"
+      ],
+      "voice_phrases_regional": {
+        "hindi": [
+          "jild par ghav",
+          "chamdi par daane",
+          "phode",
+          "skin bimari",
+          "ghanthe"
+        ],
+        "marathi": [
+          "kaatde",
+          "chamdi var jakhma",
+          "ghava",
+          "fugle"
+        ],
+        "tamil": [
+          "thol pun",
+          "thol noi",
+          "kondan",
+          "kadai thol"
+        ],
+        "telugu": [
+          "charma vyadhi",
+          "katlu",
+          "pillalu",
+          "chamuru poyindi"
+        ],
+        "gujarati": [
+          "charm rog",
+          "chala par jakhma",
+          "phoda"
+        ],
+        "punjabi": [
+          "chamdi te gharh",
+          "chann",
+          "chamdi rog"
+        ]
+      },
+      "medical_synonyms": [
+        "lumpy skin disease",
+        "dermatitis",
+        "vesicular lesions",
+        "papilloma",
+        "ringworm",
+        "mange",
+        "foot and mouth disease blisters"
+      ]
+    },
+    "swelling": {
+      "model_key": "swelling",
+      "severity_weight": 3,
+      "is_visually_detectable": "yes",
+      "category": "visual",
+      "clip_prompts": [
+        "A photo of a cow with a visibly swollen jaw or face",
+        "A photo of livestock with enlarged swollen lymph nodes on the neck",
+        "A photo of a goat with a grossly swollen leg or joint",
+        "A photo of a cattle with a bloated, distended abdomen on one side",
+        "A photo of a buffalo with swelling under the chin",
+        "A photo of an animal with puffiness or edema visible on the body",
+        "A photo of sheep with swollen feet or hooves",
+        "A photo of a cow with a swollen eye or periorbital edema"
+      ],
+      "voice_phrases_en": [
+        "swelling",
+        "swollen",
+        "lump",
+        "enlarged",
+        "bloated",
+        "puffiness",
+        "edema",
+        "bump on body",
+        "swollen leg",
+        "swollen face",
+        "swollen neck",
+        "swollen joint",
+        "big lump",
+        "grew big overnight",
+        "hard lump"
+      ],
+      "voice_phrases_regional": {
+        "hindi": [
+          "sujan",
+          "phoolna",
+          "gaanth",
+          "munh sujanaa",
+          "pair sujan"
+        ],
+        "marathi": [
+          "sujaane",
+          "sujna",
+          "gaath",
+          "phugane"
+        ],
+        "tamil": [
+          "veekam",
+          "vedippu",
+          "attai"
+        ],
+        "telugu": [
+          "vompu",
+          "ubbinatu",
+          "veekam"
+        ],
+        "gujarati": [
+          "sozo",
+          "phuleli gaat",
+          "bhupdal"
+        ],
+        "punjabi": [
+          "sujan",
+          "phullna",
+          "gaath"
+        ]
+      },
+      "medical_synonyms": [
+        "edema",
+        "lymphadenopathy",
+        "submandibular edema",
+        "bloat",
+        "tympany",
+        "abscess",
+        "tumefaction"
+      ]
+    },
+    "respiratory_distress": {
+      "model_key": "respiratory_distress",
+      "severity_weight": 4,
+      "is_visually_detectable": "yes",
+      "category": "visual",
+      "clip_prompts": [
+        "A photo of a cow breathing with mouth open in distress",
+        "A photo of livestock with nostrils flared and struggling to breathe",
+        "A photo of a goat with its neck stretched upward gasping for air",
+        "A photo of cattle with visible rapid chest movements from breathing difficulty",
+        "A photo of an animal with labored breathing and heaving flanks",
+        "A photo of a sheep foaming at the mouth from severe respiratory distress",
+        "A photo of buffalo with blue-tinted gums indicating oxygen deprivation"
+      ],
+      "voice_phrases_en": [
+        "difficulty breathing",
+        "respiratory distress",
+        "gasping for air",
+        "labored breathing",
+        "breathing very fast",
+        "breathing heavily",
+        "breathless",
+        "panting",
+        "struggling to breathe",
+        "wheezing",
+        "noisy breathing",
+        "short of breath",
+        "can not breathe properly"
+      ],
+      "voice_phrases_regional": {
+        "hindi": [
+          "saans lene mein taklif",
+          "saans phool raha",
+          "dam ghutna"
+        ],
+        "marathi": [
+          "shwaas gheta yena",
+          "shwaas thambla",
+          "dama"
+        ],
+        "tamil": [
+          "maarpil vedikuthu",
+          "nafas suvaasam"
+        ],
+        "telugu": [
+          "shwasa kastam",
+          "thisisthundi",
+          "ucci padutundi"
+        ],
+        "gujarati": [
+          "shwas leva takleef",
+          "dam chooh",
+          "shwas padto nathi"
+        ],
+        "punjabi": [
+          "saans lain vich taklif",
+          "saans phull gaya"
+        ]
+      },
+      "medical_synonyms": [
+        "dyspnea",
+        "tachypnea",
+        "hyperpnea",
+        "open-mouth breathing",
+        "respiratory failure",
+        "pneumonia",
+        "bovine respiratory disease"
+      ]
+    },
+    "neurological_symptoms": {
+      "model_key": "neurological_symptoms",
+      "severity_weight": 5,
+      "is_visually_detectable": "yes",
+      "category": "visual",
+      "clip_prompts": [
+        "A photo of a cow circling in one direction repeatedly",
+        "A photo of livestock with head pressing against a wall or fence",
+        "A photo of a goat or sheep with its head tilted at an abnormal angle",
+        "A photo of a cattle animal having a visible seizure or convulsion",
+        "A photo of an animal star-gazing, with head bent unnaturally backwards",
+        "A photo of livestock stumbling in circles or walking in an uncoordinated way",
+        "A photo of a cow with muscle twitching or tremors"
+      ],
+      "voice_phrases_en": [
+        "fits",
+        "seizures",
+        "convulsions",
+        "circling",
+        "head pressing",
+        "wobbling",
+        "losing balance",
+        "falling over repeatedly",
+        "star gazing",
+        "head twisted",
+        "neurological",
+        "nervous system",
+        "twitching",
+        "tremors",
+        "brain fever",
+        "going mad",
+        "behaving strange",
+        "cannot walk straight"
+      ],
+      "voice_phrases_regional": {
+        "hindi": [
+          "dore khana",
+          "chakkar aana",
+          "sir ghoomna",
+          "mirgi",
+          "gardan tedhi"
+        ],
+        "marathi": [
+          "ghumatoo",
+          "chukka lagto",
+          "aakaash pahtoy"
+        ],
+        "tamil": [
+          "silandhal",
+          "kaal tharanum",
+          "marumanam"
+        ],
+        "telugu": [
+          "gadabadu",
+          "tallakindhi",
+          "muriyutundi"
+        ],
+        "gujarati": [
+          "chakkar",
+          "mathe vaage",
+          "kandho vaanko"
+        ],
+        "punjabi": [
+          "chakkar",
+          "sir ghumna",
+          "mirgi aaya"
+        ]
+      },
+      "medical_synonyms": [
+        "encephalitis",
+        "listeriosis",
+        "polioencephalomalacia",
+        "tetanus",
+        "rabies",
+        "circling disease",
+        "milk fever"
+      ]
+    },
+    "sudden_death": {
+      "model_key": "sudden_death",
+      "severity_weight": 5,
+      "is_visually_detectable": "yes",
+      "category": "visual",
+      "clip_prompts": [
+        "A photo of a dead cow or livestock animal lying on the ground",
+        "A photo of cattle that has died suddenly in a field",
+        "A photo of multiple dead goats or sheep in one place",
+        "A photo of an animal carcass with bloated abdomen from sudden death",
+        "A photo of a dead bird or poultry lying in a farm"
+      ],
+      "voice_phrases_en": [
+        "sudden death",
+        "died suddenly",
+        "dropped dead",
+        "found dead",
+        "animal died",
+        "dead in field",
+        "unexpected death",
+        "multiple deaths",
+        "many animals died",
+        "collapsed and died",
+        "dead this morning",
+        "died last night"
+      ],
+      "voice_phrases_regional": {
+        "hindi": [
+          "achanak maut",
+          "mar gaya",
+          "gir ke mar gaya",
+          "kal raat mara"
+        ],
+        "marathi": [
+          "ekdum mela",
+          "mar gela",
+          "ratri mela"
+        ],
+        "tamil": [
+          "thadi thirunchi sethatu",
+          "sethu pochu",
+          "iranthu pochu"
+        ],
+        "telugu": [
+          "ochempu",
+          "chachindi",
+          "maedu chachindi"
+        ],
+        "gujarati": [
+          "achanak marigayo",
+          "marigayo",
+          "margayo"
+        ],
+        "punjabi": [
+          "achanak mar gaya",
+          "gir ke mar gaya",
+          "murr gaya"
+        ]
+      },
+      "medical_synonyms": [
+        "peracute death",
+        "sudden peracute mortality",
+        "anthrax",
+        "blackleg",
+        "hemorrhagic septicemia",
+        "bloat-related death"
+      ]
+    }
+  },
+  "voice_lookup": {
+    "fever": "fever",
+    "high temperature": "fever",
+    "hot body": "fever",
+    "burning up": "fever",
+    "body hot": "fever",
+    "animal is very warm": "fever",
+    "seems feverish": "fever",
+    "high heat": "fever",
+    "pyrexia": "fever",
+    "the cow feels very hot when i touch it": "fever",
+    "body temperature is high": "fever",
+    "bukhar": "fever",
+    "tez bukhar": "fever",
+    "shareer garam": "fever",
+    "taap": "fever",
+    "tap": "fever",
+    "taap ala": "fever",
+    "shareeer garma": "fever",
+    "kaichal": "fever",
+    "juram": "fever",
+    "udal veppam": "fever",
+    "jwaram": "fever",
+    "vappu": "fever",
+    "deham venguta": "fever",
+    "tav": "fever",
+    "garam": "fever",
+    "tapp": "fever",
+    "garam body": "fever",
+    "hyperthermia": "fever",
+    "elevated body temperature": "fever",
+    "coughing": "coughing",
+    "cough": "coughing",
+    "keeps coughing": "coughing",
+    "persistent cough": "coughing",
+    "dry cough": "coughing",
+    "wet cough": "coughing",
+    "hacking cough": "coughing",
+    "the animal coughs all night": "coughing",
+    "making coughing noise": "coughing",
+    "cough not stopping": "coughing",
+    "has a bad cough": "coughing",
+    "khansi": "coughing",
+    "khaansi": "coughing",
+    "khaans raha hai": "coughing",
+    "khasne": "coughing",
+    "khas": "coughing",
+    "khaas aahe": "coughing",
+    "irumul": "coughing",
+    "irumal": "coughing",
+    "dagguta": "coughing",
+    "daggutundo": "coughing",
+    "uksras": "coughing",
+    "ukhadto": "coughing",
+    "khassi": "coughing",
+    "tussis": "coughing",
+    "respiratory cough": "coughing",
+    "chronic cough": "coughing",
+    "bovine cough": "coughing",
+    "runny nose": "nasal_discharge",
+    "nasal discharge": "nasal_discharge",
+    "mucus from nose": "nasal_discharge",
+    "nose running": "nasal_discharge",
+    "snot coming out": "nasal_discharge",
+    "nose dripping": "nasal_discharge",
+    "discharge from nostrils": "nasal_discharge",
+    "liquid coming from nose": "nasal_discharge",
+    "nose fluid": "nasal_discharge",
+    "watery nose": "nasal_discharge",
+    "bloody nose": "nasal_discharge",
+    "thick mucus nose": "nasal_discharge",
+    "dried crust on nose": "nasal_discharge",
+    "naak beh raha": "nasal_discharge",
+    "naak se paani": "nasal_discharge",
+    "naak se kuch nikal raha": "nasal_discharge",
+    "naakatu pani": "nasal_discharge",
+    "naak vahat aahe": "nasal_discharge",
+    "naakave paani": "nasal_discharge",
+    "mooku ottuthu": "nasal_discharge",
+    "mooku thanni": "nasal_discharge",
+    "nasupu kaaru tundi": "nasal_discharge",
+    "mucu vastundi": "nasal_discharge",
+    "naku thi pani": "nasal_discharge",
+    "nakhu vahe che": "nasal_discharge",
+    "nakkoo pani": "nasal_discharge",
+    "nak waho": "nasal_discharge",
+    "rhinorrhea": "nasal_discharge",
+    "serous nasal exudate": "nasal_discharge",
+    "mucopurulent nasal discharge": "nasal_discharge",
+    "weak": "weakness",
+    "weakness": "weakness",
+    "lethargic": "weakness",
+    "no energy": "weakness",
+    "can not stand up": "weakness",
+    "very tired": "weakness",
+    "exhausted": "weakness",
+    "listless": "weakness",
+    "dull": "weakness",
+    "not moving": "weakness",
+    "laying down all the time": "weakness",
+    "keeps falling": "weakness",
+    "can barely walk": "weakness",
+    "looks sick and weak": "weakness",
+    "very pale and weak animal": "weakness",
+    "kamzor": "weakness",
+    "uth nahi pa raha": "weakness",
+    "thaka hua": "weakness",
+    "nirbal": "weakness",
+    "adkha": "weakness",
+    "uthta nahi": "weakness",
+    "thakala aahe": "weakness",
+    "shaktihin": "weakness",
+    "mela illama": "weakness",
+    "thazha pada": "weakness",
+    "valikuthu": "weakness",
+    "balaheenanga": "weakness",
+    "lekkaleru": "weakness",
+    "lethalemu": "weakness",
+    "nabbad": "weakness",
+    "ubha na thay": "weakness",
+    "namali gayo": "weakness",
+    "utha nahi sakda": "weakness",
+    "uthna nahi": "weakness",
+    "debility": "weakness",
+    "asthenia": "weakness",
+    "generalized weakness": "weakness",
+    "downer cow": "weakness",
+    "recumbency": "weakness",
+    "diarrhea": "diarrhea",
+    "loose stool": "diarrhea",
+    "watery stool": "diarrhea",
+    "runny poop": "diarrhea",
+    "loose motions": "diarrhea",
+    "stomach upset": "diarrhea",
+    "loose droppings": "diarrhea",
+    "liquid feces": "diarrhea",
+    "diarrhoea": "diarrhea",
+    "scours": "diarrhea",
+    "loose bowel": "diarrhea",
+    "passing water": "diarrhea",
+    "smelly loose stool": "diarrhea",
+    "bloody stool": "diarrhea",
+    "blood in feces": "diarrhea",
+    "dast": "diarrhea",
+    "patlaa potty": "diarrhea",
+    "baar baar potty": "diarrhea",
+    "jhada": "diarrhea",
+    "joolap": "diarrhea",
+    "shauchaas paani": "diarrhea",
+    "julap": "diarrhea",
+    "paani potty": "diarrhea",
+    "pongiyal": "diarrhea",
+    "kuzhaiya potty": "diarrhea",
+    "seepu": "diarrhea",
+    "visarjana": "diarrhea",
+    "neer potty": "diarrhea",
+    "patal jhada": "diarrhea",
+    "ughal": "diarrhea",
+    "patlaa": "diarrhea",
+    "enteritis": "diarrhea",
+    "bovine viral diarrhea": "diarrhea",
+    "dysentery": "diarrhea",
+    "colitis": "diarrhea",
+    "not eating": "loss_of_appetite",
+    "loss of appetite": "loss_of_appetite",
+    "refusing to eat": "loss_of_appetite",
+    "skipping feed": "loss_of_appetite",
+    "will not touch food": "loss_of_appetite",
+    "stopped grazing": "loss_of_appetite",
+    "no interest in food": "loss_of_appetite",
+    "eating less": "loss_of_appetite",
+    "anorexia": "loss_of_appetite",
+    "hasn't eaten since yesterday": "loss_of_appetite",
+    "ignoring fodder": "loss_of_appetite",
+    "not grazing": "loss_of_appetite",
+    "not drinking water": "loss_of_appetite",
+    "stopped chewing cud": "loss_of_appetite",
+    "no rumination": "loss_of_appetite",
+    "khana nahi kha raha": "loss_of_appetite",
+    "bhojan tyag": "loss_of_appetite",
+    "chaara nahi kha raha": "loss_of_appetite",
+    "jevan nahi khat": "loss_of_appetite",
+    "chaara nahi khat": "loss_of_appetite",
+    "anna tyag": "loss_of_appetite",
+    "saapida marukkuthu": "loss_of_appetite",
+    "thirvu illai": "loss_of_appetite",
+    "javvu illai": "loss_of_appetite",
+    "tisukutu ledu": "loss_of_appetite",
+    "tinuta manesindu": "loss_of_appetite",
+    "melu manesindi": "loss_of_appetite",
+    "khaatu nathi": "loss_of_appetite",
+    "bhukh nathi": "loss_of_appetite",
+    "charo nahi khato": "loss_of_appetite",
+    "khanda nahi": "loss_of_appetite",
+    "khana chhadaya": "loss_of_appetite",
+    "nahi khaa raha": "loss_of_appetite",
+    "inappetence": "loss_of_appetite",
+    "hyporexia": "loss_of_appetite",
+    "reduced feed intake": "loss_of_appetite",
+    "less milk": "reduced_milk_production",
+    "reduced milk": "reduced_milk_production",
+    "milk dropped": "reduced_milk_production",
+    "not giving milk": "reduced_milk_production",
+    "milk production down": "reduced_milk_production",
+    "dry cow": "reduced_milk_production",
+    "milk has stopped": "reduced_milk_production",
+    "udder problem": "reduced_milk_production",
+    "milk is less than usual": "reduced_milk_production",
+    "sudden milk drop": "reduced_milk_production",
+    "mastitis": "reduced_milk_production",
+    "infected udder": "reduced_milk_production",
+    "hard udder": "reduced_milk_production",
+    "painful udder": "reduced_milk_production",
+    "dudh kam ho gaya": "reduced_milk_production",
+    "dudh nahi de raha": "reduced_milk_production",
+    "dudh band": "reduced_milk_production",
+    "thaan mein sujan": "reduced_milk_production",
+    "doodh kami zale": "reduced_milk_production",
+    "doodh nahi deto": "reduced_milk_production",
+    "chalani kame": "reduced_milk_production",
+    "paal kurainchidchu": "reduced_milk_production",
+    "paal illai": "reduced_milk_production",
+    "mund vali": "reduced_milk_production",
+    "palu takkuva": "reduced_milk_production",
+    "palu ravatledu": "reduced_milk_production",
+    "pali thaginchindi": "reduced_milk_production",
+    "dudh aayu nahi": "reduced_milk_production",
+    "dudh aaochhu thayoo": "reduced_milk_production",
+    "dudh ghat gaya": "reduced_milk_production",
+    "dudh nahi dinda": "reduced_milk_production",
+    "tann dukh": "reduced_milk_production",
+    "agalactia": "reduced_milk_production",
+    "hypogalactia": "reduced_milk_production",
+    "decreased lactation": "reduced_milk_production",
+    "skin lesions": "skin_lesions",
+    "sores on skin": "skin_lesions",
+    "wounds on body": "skin_lesions",
+    "lumps on skin": "skin_lesions",
+    "skin disease": "skin_lesions",
+    "rashes": "skin_lesions",
+    "blisters": "skin_lesions",
+    "pox marks": "skin_lesions",
+    "warts": "skin_lesions",
+    "scabs": "skin_lesions",
+    "crusty skin": "skin_lesions",
+    "skin ulcers": "skin_lesions",
+    "open wounds": "skin_lesions",
+    "skin bumps": "skin_lesions",
+    "lumpy skin": "skin_lesions",
+    "skin infection": "skin_lesions",
+    "boils on skin": "skin_lesions",
+    "spots on skin": "skin_lesions",
+    "jild par ghav": "skin_lesions",
+    "chamdi par daane": "skin_lesions",
+    "phode": "skin_lesions",
+    "skin bimari": "skin_lesions",
+    "ghanthe": "skin_lesions",
+    "kaatde": "skin_lesions",
+    "chamdi var jakhma": "skin_lesions",
+    "ghava": "skin_lesions",
+    "fugle": "skin_lesions",
+    "thol pun": "skin_lesions",
+    "thol noi": "skin_lesions",
+    "kondan": "skin_lesions",
+    "kadai thol": "skin_lesions",
+    "charma vyadhi": "skin_lesions",
+    "katlu": "skin_lesions",
+    "pillalu": "skin_lesions",
+    "chamuru poyindi": "skin_lesions",
+    "charm rog": "skin_lesions",
+    "chala par jakhma": "skin_lesions",
+    "phoda": "skin_lesions",
+    "chamdi te gharh": "skin_lesions",
+    "chann": "skin_lesions",
+    "chamdi rog": "skin_lesions",
+    "lumpy skin disease": "skin_lesions",
+    "dermatitis": "skin_lesions",
+    "vesicular lesions": "skin_lesions",
+    "papilloma": "skin_lesions",
+    "ringworm": "skin_lesions",
+    "mange": "skin_lesions",
+    "foot and mouth disease blisters": "skin_lesions",
+    "swelling": "swelling",
+    "swollen": "swelling",
+    "lump": "swelling",
+    "enlarged": "swelling",
+    "bloated": "swelling",
+    "puffiness": "swelling",
+    "edema": "swelling",
+    "bump on body": "swelling",
+    "swollen leg": "swelling",
+    "swollen face": "swelling",
+    "swollen neck": "swelling",
+    "swollen joint": "swelling",
+    "big lump": "swelling",
+    "grew big overnight": "swelling",
+    "hard lump": "swelling",
+    "sujan": "swelling",
+    "phoolna": "swelling",
+    "gaanth": "swelling",
+    "munh sujanaa": "swelling",
+    "pair sujan": "swelling",
+    "sujaane": "swelling",
+    "sujna": "swelling",
+    "gaath": "swelling",
+    "phugane": "swelling",
+    "veekam": "swelling",
+    "vedippu": "swelling",
+    "attai": "swelling",
+    "vompu": "swelling",
+    "ubbinatu": "swelling",
+    "sozo": "swelling",
+    "phuleli gaat": "swelling",
+    "bhupdal": "swelling",
+    "phullna": "swelling",
+    "lymphadenopathy": "swelling",
+    "submandibular edema": "swelling",
+    "bloat": "swelling",
+    "tympany": "swelling",
+    "abscess": "swelling",
+    "tumefaction": "swelling",
+    "difficulty breathing": "respiratory_distress",
+    "respiratory distress": "respiratory_distress",
+    "gasping for air": "respiratory_distress",
+    "labored breathing": "respiratory_distress",
+    "breathing very fast": "respiratory_distress",
+    "breathing heavily": "respiratory_distress",
+    "breathless": "respiratory_distress",
+    "panting": "respiratory_distress",
+    "struggling to breathe": "respiratory_distress",
+    "wheezing": "respiratory_distress",
+    "noisy breathing": "respiratory_distress",
+    "short of breath": "respiratory_distress",
+    "can not breathe properly": "respiratory_distress",
+    "saans lene mein taklif": "respiratory_distress",
+    "saans phool raha": "respiratory_distress",
+    "dam ghutna": "respiratory_distress",
+    "shwaas gheta yena": "respiratory_distress",
+    "shwaas thambla": "respiratory_distress",
+    "dama": "respiratory_distress",
+    "maarpil vedikuthu": "respiratory_distress",
+    "nafas suvaasam": "respiratory_distress",
+    "shwasa kastam": "respiratory_distress",
+    "thisisthundi": "respiratory_distress",
+    "ucci padutundi": "respiratory_distress",
+    "shwas leva takleef": "respiratory_distress",
+    "dam chooh": "respiratory_distress",
+    "shwas padto nathi": "respiratory_distress",
+    "saans lain vich taklif": "respiratory_distress",
+    "saans phull gaya": "respiratory_distress",
+    "dyspnea": "respiratory_distress",
+    "tachypnea": "respiratory_distress",
+    "hyperpnea": "respiratory_distress",
+    "open-mouth breathing": "respiratory_distress",
+    "respiratory failure": "respiratory_distress",
+    "pneumonia": "respiratory_distress",
+    "bovine respiratory disease": "respiratory_distress",
+    "fits": "neurological_symptoms",
+    "seizures": "neurological_symptoms",
+    "convulsions": "neurological_symptoms",
+    "circling": "neurological_symptoms",
+    "head pressing": "neurological_symptoms",
+    "wobbling": "neurological_symptoms",
+    "losing balance": "neurological_symptoms",
+    "falling over repeatedly": "neurological_symptoms",
+    "star gazing": "neurological_symptoms",
+    "head twisted": "neurological_symptoms",
+    "neurological": "neurological_symptoms",
+    "nervous system": "neurological_symptoms",
+    "twitching": "neurological_symptoms",
+    "tremors": "neurological_symptoms",
+    "brain fever": "neurological_symptoms",
+    "going mad": "neurological_symptoms",
+    "behaving strange": "neurological_symptoms",
+    "cannot walk straight": "neurological_symptoms",
+    "dore khana": "neurological_symptoms",
+    "chakkar aana": "neurological_symptoms",
+    "sir ghoomna": "neurological_symptoms",
+    "mirgi": "neurological_symptoms",
+    "gardan tedhi": "neurological_symptoms",
+    "ghumatoo": "neurological_symptoms",
+    "chukka lagto": "neurological_symptoms",
+    "aakaash pahtoy": "neurological_symptoms",
+    "silandhal": "neurological_symptoms",
+    "kaal tharanum": "neurological_symptoms",
+    "marumanam": "neurological_symptoms",
+    "gadabadu": "neurological_symptoms",
+    "tallakindhi": "neurological_symptoms",
+    "muriyutundi": "neurological_symptoms",
+    "chakkar": "neurological_symptoms",
+    "mathe vaage": "neurological_symptoms",
+    "kandho vaanko": "neurological_symptoms",
+    "sir ghumna": "neurological_symptoms",
+    "mirgi aaya": "neurological_symptoms",
+    "encephalitis": "neurological_symptoms",
+    "listeriosis": "neurological_symptoms",
+    "polioencephalomalacia": "neurological_symptoms",
+    "tetanus": "neurological_symptoms",
+    "rabies": "neurological_symptoms",
+    "circling disease": "neurological_symptoms",
+    "milk fever": "neurological_symptoms",
+    "sudden death": "sudden_death",
+    "died suddenly": "sudden_death",
+    "dropped dead": "sudden_death",
+    "found dead": "sudden_death",
+    "animal died": "sudden_death",
+    "dead in field": "sudden_death",
+    "unexpected death": "sudden_death",
+    "multiple deaths": "sudden_death",
+    "many animals died": "sudden_death",
+    "collapsed and died": "sudden_death",
+    "dead this morning": "sudden_death",
+    "died last night": "sudden_death",
+    "achanak maut": "sudden_death",
+    "mar gaya": "sudden_death",
+    "gir ke mar gaya": "sudden_death",
+    "kal raat mara": "sudden_death",
+    "ekdum mela": "sudden_death",
+    "mar gela": "sudden_death",
+    "ratri mela": "sudden_death",
+    "thadi thirunchi sethatu": "sudden_death",
+    "sethu pochu": "sudden_death",
+    "iranthu pochu": "sudden_death",
+    "ochempu": "sudden_death",
+    "chachindi": "sudden_death",
+    "maedu chachindi": "sudden_death",
+    "achanak marigayo": "sudden_death",
+    "marigayo": "sudden_death",
+    "margayo": "sudden_death",
+    "achanak mar gaya": "sudden_death",
+    "murr gaya": "sudden_death",
+    "peracute death": "sudden_death",
+    "sudden peracute mortality": "sudden_death",
+    "anthrax": "sudden_death",
+    "blackleg": "sudden_death",
+    "hemorrhagic septicemia": "sudden_death",
+    "bloat-related death": "sudden_death"
+  },
+  "clip_lookup": {
+    "A photo of a cow or goat that looks lethargic and feverish": "fever",
+    "A photo of an animal shivering or trembling from high body temperature": "fever",
+    "A photo of a livestock animal with glassy, dull, unfocused eyes from fever": "fever",
+    "A photo of a cattle with ears drooping and body hunched from illness": "fever",
+    "A photo of a cow or goat with its neck stretched out coughing": "coughing",
+    "A photo of a livestock animal coughing with mouth open": "coughing",
+    "A photo of cattle with mucus around mouth from coughing": "coughing",
+    "A photo of a sheep or goat showing signs of respiratory distress with open mouth": "coughing",
+    "A close-up photo of a cow with thick mucus dripping from its nose": "nasal_discharge",
+    "A photo of a goat with clear or yellow discharge running from the nostrils": "nasal_discharge",
+    "A photo of a livestock animal with a very runny nose": "nasal_discharge",
+    "A photo of cattle with dried crusty mucus around the nose": "nasal_discharge",
+    "A photo of a buffalo with blood-tinged nasal discharge": "nasal_discharge",
+    "A photo of an animal with foam or froth coming from its nostrils": "nasal_discharge",
+    "A photo of a cow lying down and unable or unwilling to get up": "weakness",
+    "A photo of a livestock animal that looks very weak and lethargic": "weakness",
+    "A photo of a goat or sheep drooping its head, looking exhausted": "weakness",
+    "A photo of cattle staggering or having difficulty walking": "weakness",
+    "A photo of an animal with a drooped head and dull coat from weakness": "weakness",
+    "A photo of livestock standing hunched with a bowed back due to weakness": "weakness",
+    "A photo of a cow with a heavily soiled and dirty tail from diarrhea": "diarrhea",
+    "A photo of a goat with loose stool or liquid feces around its hindquarters": "diarrhea",
+    "A photo of livestock with watery feces visible on the ground around it": "diarrhea",
+    "A photo of a cattle with a dirty rear end stained with yellowish diarrhea": "diarrhea",
+    "A photo of a calf with severe diarrhea and a matted soiled coat": "diarrhea",
+    "A photo of a sheep with scour, showing soiled fleece around the rear": "diarrhea",
+    "A photo of a cow standing near a full feed trough, not eating": "loss_of_appetite",
+    "A photo of a goat ignoring hay or feed placed in front of it": "loss_of_appetite",
+    "A photo of livestock turning away from grass or green fodder": "loss_of_appetite",
+    "A photo of an emaciated, thin animal that has not been eating": "loss_of_appetite",
+    "A photo of a cattle with a sunken flank due to not eating": "loss_of_appetite",
+    "A photo of a cow with swollen, inflamed udder from mastitis": "reduced_milk_production",
+    "A photo of a dairy cow with udder that looks red or painful": "reduced_milk_production",
+    "A photo of a buffalo with engorged udder suggesting milk not being produced normally": "reduced_milk_production",
+    "A photo of a goat or sheep with a hard, lumpy udder": "reduced_milk_production",
+    "A close-up photo of a cow with large lumpy nodules on its skin": "skin_lesions",
+    "A photo of livestock with visible sores, ulcers, or open wounds on the body": "skin_lesions",
+    "A photo of cattle with circular bald patches or ring-shaped lesions on skin": "skin_lesions",
+    "A photo of a goat with blisters or vesicles on the skin": "skin_lesions",
+    "A photo of a cow with pox marks or pustules across the body surface": "skin_lesions",
+    "A photo of a buffalo with skin covered in crusty, scabby lesions": "skin_lesions",
+    "A photo of an animal with raw, red, inflamed skin patches": "skin_lesions",
+    "A photo of livestock with warts, papillomas, or fungal patches on skin": "skin_lesions",
+    "A photo of cattle with lumpy skin disease showing prominent skin nodules": "skin_lesions",
+    "A photo of a goat with foot and mouth disease blisters on legs and mouth": "skin_lesions",
+    "A photo of a cow with a visibly swollen jaw or face": "swelling",
+    "A photo of livestock with enlarged swollen lymph nodes on the neck": "swelling",
+    "A photo of a goat with a grossly swollen leg or joint": "swelling",
+    "A photo of a cattle with a bloated, distended abdomen on one side": "swelling",
+    "A photo of a buffalo with swelling under the chin": "swelling",
+    "A photo of an animal with puffiness or edema visible on the body": "swelling",
+    "A photo of sheep with swollen feet or hooves": "swelling",
+    "A photo of a cow with a swollen eye or periorbital edema": "swelling",
+    "A photo of a cow breathing with mouth open in distress": "respiratory_distress",
+    "A photo of livestock with nostrils flared and struggling to breathe": "respiratory_distress",
+    "A photo of a goat with its neck stretched upward gasping for air": "respiratory_distress",
+    "A photo of cattle with visible rapid chest movements from breathing difficulty": "respiratory_distress",
+    "A photo of an animal with labored breathing and heaving flanks": "respiratory_distress",
+    "A photo of a sheep foaming at the mouth from severe respiratory distress": "respiratory_distress",
+    "A photo of buffalo with blue-tinted gums indicating oxygen deprivation": "respiratory_distress",
+    "A photo of a cow circling in one direction repeatedly": "neurological_symptoms",
+    "A photo of livestock with head pressing against a wall or fence": "neurological_symptoms",
+    "A photo of a goat or sheep with its head tilted at an abnormal angle": "neurological_symptoms",
+    "A photo of a cattle animal having a visible seizure or convulsion": "neurological_symptoms",
+    "A photo of an animal star-gazing, with head bent unnaturally backwards": "neurological_symptoms",
+    "A photo of livestock stumbling in circles or walking in an uncoordinated way": "neurological_symptoms",
+    "A photo of a cow with muscle twitching or tremors": "neurological_symptoms",
+    "A photo of a dead cow or livestock animal lying on the ground": "sudden_death",
+    "A photo of cattle that has died suddenly in a field": "sudden_death",
+    "A photo of multiple dead goats or sheep in one place": "sudden_death",
+    "A photo of an animal carcass with bloated abdomen from sudden death": "sudden_death",
+    "A photo of a dead bird or poultry lying in a farm": "sudden_death"
+  },
+  "visual_symptoms": [
+    "fever",
+    "coughing",
+    "nasal_discharge",
+    "weakness",
+    "diarrhea",
+    "loss_of_appetite",
+    "reduced_milk_production",
+    "skin_lesions",
+    "swelling",
+    "respiratory_distress",
+    "neurological_symptoms",
+    "sudden_death"
+  ],
+  "invisible_symptoms": [
+    "fever",
+    "loss_of_appetite",
+    "reduced_milk_production"
+  ],
+  "stats": {
+    "total_symptoms": 12,
+    "total_voice_phrases": 394,
+    "total_clip_prompts": 72,
+    "languages_covered": [
+      "english",
+      "hindi",
+      "marathi",
+      "tamil",
+      "telugu",
+      "gujarati",
+      "punjabi"
+    ]
+  }
+}

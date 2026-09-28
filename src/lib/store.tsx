@@ -224,6 +224,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const triggerJudgeScenario = (scenarioId: string) => {
     if (scenarioId === 'demo-triage-override') {
       setIsTriageOpen(true);
+    } else if (scenarioId === 'demo-forecast-graph') {
+      setRole('officer');
     } else if (scenarioId === 'demo-outbreak-nashik') {
       simulateOutbreak('Nashik Block-2 Village-1', 8);
       setRole('officer');
