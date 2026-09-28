@@ -230,51 +230,51 @@ export default function MultimodalStudio({ onTriageComplete, compact = false }: 
   };
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-3xl shadow-2xl overflow-hidden text-white">
-      {/* Studio Header Bar */}
-      <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 px-6 py-5 border-b border-slate-800 flex flex-wrap items-center justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-cyan-500 to-emerald-500 flex items-center justify-center text-slate-950 font-black shadow-lg shadow-cyan-500/20">
-            <Zap className="w-5 h-5 fill-current" />
+    <div className="bg-[#091b30] border border-[#1b3a61] rounded-2xl shadow-2xl overflow-hidden text-white">
+      {/* Studio Header Bar with Official National Protocol Branding */}
+      <div className="bg-gradient-to-r from-[#071526] via-[#0c2340] to-[#071526] px-6 py-5 border-b border-[#1b3a61] flex flex-wrap items-center justify-between gap-4">
+        <div className="flex items-center gap-3.5">
+          <div className="w-11 h-11 rounded-xl bg-[#0f294a] border border-[#234c7c] flex items-center justify-center text-emerald-400 font-black shadow-md">
+            <Stethoscope className="w-6 h-6" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h3 className="text-lg font-black tracking-tight text-white flex items-center gap-2">
-                Multi-Modal AI Diagnostic Studio
+              <h3 className="text-base sm:text-lg font-black tracking-tight text-white flex items-center gap-2 font-serif">
+                Kisan & Para-Veterinary AI Diagnostic Desk
               </h3>
-              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase bg-cyan-950 text-cyan-300 border border-cyan-800">
-                Whisper STT + CLIP ViT-L/14
+              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-[#0f2747] text-blue-200 border border-[#234c7c]">
+                NADCP Protocol #26128
               </span>
             </div>
-            <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
-              Zero-barrier disease triage via multilingual voice reporting or lesion photo scanning
+            <p className="text-xs text-slate-300 mt-0.5">
+              Official zero-barrier vernacular voice triage and cattle lesion pathology scanner for rural field screening.
             </p>
           </div>
         </div>
 
         {/* Mode Selector Tabs */}
-        <div className="flex items-center gap-2 bg-slate-950/80 p-1.5 rounded-xl border border-slate-800">
+        <div className="flex items-center gap-1.5 bg-[#061220] p-1.5 rounded-xl border border-[#1b3a61]">
           <button
             onClick={() => setActiveMode('voice')}
             className={`px-4 py-2 rounded-lg text-xs font-bold transition flex items-center gap-2 ${
               activeMode === 'voice'
-                ? 'bg-cyan-600 text-white shadow-md shadow-cyan-600/30'
+                ? 'bg-emerald-700 text-white shadow-md'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
             <Mic className="w-4 h-4" />
-            <span>Voice Assistant</span>
+            <span>Vernacular Speech (MR/HI/EN)</span>
           </button>
           <button
             onClick={() => setActiveMode('vision')}
             className={`px-4 py-2 rounded-lg text-xs font-bold transition flex items-center gap-2 ${
               activeMode === 'vision'
-                ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
+                ? 'bg-[#1b4478] text-white shadow-md'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
             <Camera className="w-4 h-4" />
-            <span>Lesion Photo Scanner</span>
+            <span>Cattle Lesion Pathology</span>
           </button>
         </div>
       </div>
