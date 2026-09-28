@@ -25,6 +25,7 @@ import {
   Volume2,
   FileCheck,
   Zap,
+  Stethoscope,
 } from 'lucide-react';
 
 interface MultimodalStudioProps {
