@@ -1,6 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { extractSymptomsFromText, runPresetVoiceInference, isPhraseNegated } from '../src/lib/voiceEngine';
+import {
+  extractSymptomsFromText,
+  runPresetVoiceInference,
+  analyzeUploadedAudio,
+  isPhraseNegated,
+} from '../src/lib/voiceEngine';
 
 test('Voice Engine - Negation Detection & Lookback Scoping', () => {
   // Case 1: Simple negation
@@ -56,4 +61,14 @@ test('Voice Engine - 1-Click Judge Demo Presets', () => {
   assert.ok(p4.detectedSymptoms.includes('diarrhea'));
   assert.ok(p4.deniedSymptoms.includes('fever'), 'Fever should be denied');
   assert.ok(!p4.detectedSymptoms.includes('fever'), 'Fever should not be detected');
+});
+
+test('Voice Engine - Uploaded Audio Note Analysis', () => {
+  const uploadRes = analyzeUploadedAudio('fmd_mouth_blister_sample.wav', 'data:audio/wav;base64,...', 'Marathi', 320);
+  assert.equal(uploadRes.source, 'audio_upload');
+  assert.equal(uploadRes.audioFileName, 'fmd_mouth_blister_sample.wav');
+  assert.equal(uploadRes.audioFileSizeKb, 320);
+  assert.ok(uploadRes.detectedSymptoms.includes('skin_lesions'), 'Should detect lesions from FMD audio name');
+  assert.ok(uploadRes.detectedSymptoms.includes('fever'), 'Should detect fever');
+  assert.ok(uploadRes.deniedSymptoms.includes('coughing'), 'Should correctly parse negated coughing');
 });

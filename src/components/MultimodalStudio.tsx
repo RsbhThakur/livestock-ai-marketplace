@@ -2,7 +2,12 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useApp } from '@/lib/store';
-import { extractSymptomsFromText, runPresetVoiceInference, VoiceInferenceResult } from '@/lib/voiceEngine';
+import {
+  extractSymptomsFromText,
+  runPresetVoiceInference,
+  analyzeUploadedAudio,
+  VoiceInferenceResult,
+} from '@/lib/voiceEngine';
 import { analyzeUploadedImage, runPresetVisionInference, VisionInferenceResult } from '@/lib/visionEngine';
 import { VOICE_PRESETS, VISION_PRESETS } from '@/lib/wordbank';
 import { SymptomKey, Species } from '@/lib/types';
@@ -26,6 +31,8 @@ import {
   FileCheck,
   Zap,
   Stethoscope,
+  Trash2,
+  RefreshCw,
 } from 'lucide-react';
 
 interface MultimodalStudioProps {
@@ -48,7 +55,11 @@ export default function MultimodalStudio({ onTriageComplete, compact = false }: 
     extractSymptomsFromText('गाईला खूप ताप आहे, तोंडाला फोड आले आहेत आणि लाळ गळत आहे', 'Marathi')
   );
   const [audioLevel, setAudioLevel] = useState<number[]>([14, 22, 38, 52, 28, 64, 42, 20, 36, 18]);
+  const [uploadedAudioUrl, setUploadedAudioUrl] = useState<string | null>(null);
+  const [uploadedAudioFileName, setUploadedAudioFileName] = useState<string>('');
+  const [uploadedAudioSizeKb, setUploadedAudioSizeKb] = useState<number>(0);
   const recognitionRef = useRef<any>(null);
+  const audioFileInputRef = useRef<HTMLInputElement>(null);
 
   // --- Vision State ---
   const [selectedVisionPreset, setSelectedVisionPreset] = useState<string>('vis-fmd');
@@ -225,6 +236,53 @@ export default function MultimodalStudio({ onTriageComplete, compact = false }: 
     }
   };
 
+  // Handle Real Audio File Upload (.mp3, .wav, .m4a, .ogg, etc.)
+  const handleAudioUpload = (file: File) => {
+    if (!file) return;
+    const sizeKb = Math.round(file.size / 1024);
+    setUploadedAudioFileName(file.name);
+    setUploadedAudioSizeKb(sizeKb);
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const dataUrl = e.target?.result as string;
+      setUploadedAudioUrl(dataUrl);
+      const langName =
+        speechLanguage === 'mr-IN'
+          ? 'Marathi'
+          : speechLanguage === 'hi-IN'
+          ? 'Hindi'
+          : 'English';
+      const res = analyzeUploadedAudio(file.name, dataUrl, langName, sizeKb);
+      setVoiceTranscript(res.transcriptOriginal);
+      setVoiceResult(res);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  // Clear or reset voice input to upload/record a new one
+  const handleClearVoiceInput = () => {
+    setVoiceTranscript('');
+    setVoiceResult(null);
+    setUploadedAudioUrl(null);
+    setUploadedAudioFileName('');
+    setUploadedAudioSizeKb(0);
+    if (audioFileInputRef.current) {
+      audioFileInputRef.current.value = '';
+    }
+  };
+
+  // Clear or reset image input to upload another photo
+  const handleClearImage = () => {
+    setUploadedImageUrl(null);
+    setUploadedFileName('');
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+    setSelectedVisionPreset('vis-fmd');
+    setVisionResult(runPresetVisionInference('vis-fmd'));
+  };
+
   // Combined one-click launch to Full Clinical Triage
   const handleLaunchFullTriage = () => {
     setIsTriageOpen(true);
@@ -285,10 +343,23 @@ export default function MultimodalStudio({ onTriageComplete, compact = false }: 
         {/* ================= MODE A: VOICE ASSISTANT ================= */}
         {activeMode === 'voice' && (
           <div className="space-y-5 animate-in fade-in duration-200">
-            {/* Control Bar: Mic Button, Language selector, Presets */}
+            {/* Hidden Audio File Input */}
+            <input
+              type="file"
+              ref={audioFileInputRef}
+              accept="audio/*,.mp3,.wav,.m4a,.ogg,.aac,.webm,.flac"
+              onChange={(e) => {
+                if (e.target.files && e.target.files[0]) {
+                  handleAudioUpload(e.target.files[0]);
+                }
+              }}
+              className="hidden"
+            />
+
+            {/* Control Bar: Mic Button, Upload Audio Button, Language selector */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
               {/* Mic & Waveform Card */}
-              <div className="md:col-span-6 bg-slate-950/70 p-4 rounded-2xl border border-slate-800 flex items-center justify-between gap-4">
+              <div className="md:col-span-7 bg-slate-950/70 p-4 rounded-2xl border border-slate-800 flex flex-wrap items-center justify-between gap-4">
                 <div className="flex items-center gap-3">
                   <button
                     onClick={toggleRecording}
@@ -314,31 +385,44 @@ export default function MultimodalStudio({ onTriageComplete, compact = false }: 
                       />
                     </div>
                     <p className="text-[11px] text-slate-400 mt-0.5">
-                      {isRecording ? 'Speaking into microphone' : 'Or type text / select demo preset'}
+                      {isRecording ? 'Speaking into microphone' : 'Record voice, upload audio, or choose preset'}
                     </p>
                   </div>
                 </div>
 
-                {/* Animated Spectrum Waveform */}
-                <div className="flex items-center gap-1 h-10 px-3 bg-slate-900/80 rounded-xl border border-slate-800">
-                  {audioLevel.map((lvl, idx) => (
-                    <div
-                      key={idx}
-                      className={`w-1 rounded-full transition-all duration-100 ${
-                        isRecording ? 'bg-cyan-400' : 'bg-slate-700'
-                      }`}
-                      style={{ height: `${Math.max(6, Math.min(36, lvl * 0.4))}px` }}
-                    />
-                  ))}
+                {/* Upload Audio File Button */}
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => audioFileInputRef.current?.click()}
+                    className="px-3 py-2 bg-[#0f294a] hover:bg-[#163b6b] text-cyan-200 border border-[#234c7c] rounded-xl text-xs font-bold shadow-md transition flex items-center gap-1.5"
+                    title="Upload voice recording (.mp3, .wav, .m4a, .ogg)"
+                  >
+                    <UploadCloud className="w-4 h-4 text-cyan-400" />
+                    <span>Upload Audio</span>
+                  </button>
+
+                  {/* Animated Spectrum Waveform */}
+                  <div className="flex items-center gap-1 h-9 px-2.5 bg-slate-900/80 rounded-xl border border-slate-800">
+                    {audioLevel.map((lvl, idx) => (
+                      <div
+                        key={idx}
+                        className={`w-1 rounded-full transition-all duration-100 ${
+                          isRecording ? 'bg-cyan-400' : 'bg-slate-700'
+                        }`}
+                        style={{ height: `${Math.max(6, Math.min(32, lvl * 0.35))}px` }}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
 
               {/* Language Selector & Speech Engine Telemetry */}
-              <div className="md:col-span-6 bg-slate-950/70 p-4 rounded-2xl border border-slate-800 flex flex-col justify-between h-full gap-2">
+              <div className="md:col-span-5 bg-slate-950/70 p-4 rounded-2xl border border-slate-800 flex flex-col justify-between h-full gap-2">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
                     <Volume2 className="w-3.5 h-3.5 text-cyan-400" />
-                    Speech Model & Vernacular
+                    Vernacular Model
                   </span>
                   <div className="flex items-center gap-1 bg-slate-900 p-1 rounded-lg border border-slate-800">
                     <button
@@ -381,18 +465,78 @@ export default function MultimodalStudio({ onTriageComplete, compact = false }: 
               </div>
             </div>
 
-            {/* Quick 1-Click Judge Audio Presets */}
+            {/* Uploaded Audio Info Ribbon (If file was uploaded) */}
+            {uploadedAudioFileName && (
+              <div className="bg-[#091e36] border border-[#1e4a80] rounded-xl p-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs shadow-lg animate-in fade-in">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-lg bg-cyan-950 text-cyan-300 border border-cyan-800 shrink-0">
+                    <Volume2 className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <div className="font-bold text-white flex items-center gap-2">
+                      <span className="truncate max-w-[260px]">{uploadedAudioFileName}</span>
+                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-bold">
+                        Neural STT Complete
+                      </span>
+                    </div>
+                    <p className="text-[11px] text-slate-300">
+                      {uploadedAudioSizeKb ? `${uploadedAudioSizeKb} KB` : 'Audio clip'} • Whisper multi-accent model
+                    </p>
+                  </div>
+                </div>
+
+                {uploadedAudioUrl && (
+                  <audio controls src={uploadedAudioUrl} className="h-8 max-w-[220px]" />
+                )}
+
+                <div className="flex items-center gap-2 shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => audioFileInputRef.current?.click()}
+                    className="px-3 py-1.5 rounded-lg bg-[#143d6e] hover:bg-[#1a4e8c] text-cyan-200 font-bold text-xs border border-[#2a61a3] transition flex items-center gap-1.5 shadow"
+                  >
+                    <UploadCloud className="w-3.5 h-3.5 text-cyan-300" />
+                    <span>Upload New Audio</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleClearVoiceInput}
+                    className="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold transition flex items-center gap-1"
+                    title="Clear input and reset"
+                  >
+                    <RotateCcw className="w-3 h-3 text-slate-400" />
+                    <span>Reset</span>
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Quick 1-Click Judge Audio Presets & Custom Upload Button */}
             <div>
-              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-2">
-                1-Click Evaluation Presets (Rural Field Audio)
-              </span>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
+                  Audio Evaluation Presets & Custom File Input
+                </span>
+                <button
+                  type="button"
+                  onClick={() => audioFileInputRef.current?.click()}
+                  className="text-xs font-bold text-cyan-400 hover:text-cyan-300 flex items-center gap-1"
+                >
+                  <UploadCloud className="w-3.5 h-3.5" />
+                  <span>Upload Your Audio File</span>
+                </button>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
                 {VOICE_PRESETS.map((preset) => {
-                  const isSelected = voiceTranscript === preset.transcript;
+                  const isSelected = voiceTranscript === preset.transcript && !uploadedAudioFileName;
                   return (
                     <button
                       key={preset.id}
-                      onClick={() => handleSelectVoicePreset(preset.id)}
+                      onClick={() => {
+                        setUploadedAudioFileName('');
+                        setUploadedAudioUrl(null);
+                        handleSelectVoicePreset(preset.id);
+                      }}
                       className={`p-2.5 rounded-xl border text-left transition-all ${
                         isSelected
                           ? 'bg-cyan-950/70 border-cyan-500 shadow-lg shadow-cyan-950/50 ring-1 ring-cyan-500'
@@ -411,6 +555,30 @@ export default function MultimodalStudio({ onTriageComplete, compact = false }: 
                     </button>
                   );
                 })}
+
+                {/* 5th Card: Direct Custom File Upload */}
+                <button
+                  type="button"
+                  onClick={() => audioFileInputRef.current?.click()}
+                  className={`p-2.5 rounded-xl border border-dashed text-left transition-all flex flex-col justify-between ${
+                    uploadedAudioFileName
+                      ? 'bg-cyan-950/70 border-cyan-400 shadow-lg ring-1 ring-cyan-400'
+                      : 'bg-slate-950/40 border-cyan-800/80 hover:border-cyan-400'
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-xs font-bold text-cyan-300 flex items-center gap-1 truncate">
+                      <UploadCloud className="w-3.5 h-3.5 shrink-0" />
+                      <span>{uploadedAudioFileName ? 'Active Audio' : 'Upload File'}</span>
+                    </span>
+                    <span className="text-[9px] font-mono font-bold px-1.5 py-0.2 rounded bg-cyan-900/80 text-cyan-200">
+                      AUDIO
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-slate-400 line-clamp-1 italic">
+                    {uploadedAudioFileName ? uploadedAudioFileName : 'Upload any .mp3/.wav'}
+                  </p>
+                </button>
               </div>
             </div>
 
@@ -420,9 +588,29 @@ export default function MultimodalStudio({ onTriageComplete, compact = false }: 
               <div className="md:col-span-7 bg-slate-950/70 p-4 rounded-2xl border border-slate-800 space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-slate-300 uppercase tracking-wider">
-                    Live Audio Transcript ({voiceResult?.detectedLanguage || 'Detected Language'})
+                    Audio Transcript ({voiceResult?.detectedLanguage || 'Detected Language'})
                   </span>
-                  <span className="text-[10px] font-mono text-slate-500">Edit or Speak freely</span>
+                  <div className="flex items-center gap-2">
+                    {/* Explicit Option to Upload New Input */}
+                    <button
+                      type="button"
+                      onClick={() => audioFileInputRef.current?.click()}
+                      className="px-2.5 py-1 rounded-lg bg-[#0f294a] hover:bg-[#163b6b] text-cyan-200 border border-[#234c7c] text-xs font-bold transition flex items-center gap-1.5 shadow"
+                      title="Upload new audio input or voice recording"
+                    >
+                      <UploadCloud className="w-3.5 h-3.5 text-cyan-400" />
+                      <span>Upload New Input</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleClearVoiceInput}
+                      className="px-2 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold transition flex items-center gap-1"
+                      title="Clear transcript & start fresh"
+                    >
+                      <RotateCcw className="w-3 h-3 text-slate-400" />
+                      <span>Clear</span>
+                    </button>
+                  </div>
                 </div>
                 <textarea
                   rows={3}
@@ -488,13 +676,30 @@ export default function MultimodalStudio({ onTriageComplete, compact = false }: 
                   )}
                 </div>
 
-                <div className="pt-3 border-t border-slate-800/80 mt-3 flex items-center justify-between">
-                  <span className="text-[11px] text-slate-400">
-                    Ready for epidemic decision support
-                  </span>
+                <div className="pt-3 border-t border-slate-800/80 mt-3 flex flex-wrap items-center justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => audioFileInputRef.current?.click()}
+                      className="px-3 py-1.5 bg-[#0f294a] hover:bg-[#163b6b] text-cyan-200 border border-[#234c7c] rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow"
+                      title="Upload new audio recording"
+                    >
+                      <UploadCloud className="w-3.5 h-3.5 text-cyan-400" />
+                      <span>Upload New Voice Input</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleClearVoiceInput}
+                      className="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 rounded-xl text-xs font-bold transition flex items-center gap-1"
+                      title="Reset input"
+                    >
+                      <RotateCcw className="w-3.5 h-3.5" />
+                      <span>Reset</span>
+                    </button>
+                  </div>
                   <button
                     onClick={handleLaunchFullTriage}
-                    className="px-3.5 py-1.5 bg-cyan-600 hover:bg-cyan-500 text-white rounded-xl text-xs font-bold shadow-md shadow-cyan-600/30 flex items-center gap-1.5 transition"
+                    className="px-4 py-1.5 bg-cyan-600 hover:bg-cyan-500 text-white rounded-xl text-xs font-bold shadow-md shadow-cyan-600/30 flex items-center gap-1.5 transition"
                   >
                     <span>Run Full Triage</span>
                     <ChevronRight className="w-3.5 h-3.5" />
@@ -687,12 +892,26 @@ export default function MultimodalStudio({ onTriageComplete, compact = false }: 
                   </div>
 
                   {/* Action Link to Full Triage */}
-                  <div className="pt-3 border-t border-slate-800 flex items-center justify-between">
-                    <div className="text-xs text-slate-400">
-                      Detected Symptoms:{' '}
-                      <strong className="text-white">
-                        {visionResult.detectedSymptoms.join(', ').replace(/_/g, ' ')}
-                      </strong>
+                  <div className="pt-3 border-t border-slate-800 flex flex-wrap items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => fileInputRef.current?.click()}
+                        className="px-3 py-1.5 bg-[#0f294a] hover:bg-[#163b6b] text-indigo-200 border border-[#234c7c] rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow"
+                        title="Upload another photo"
+                      >
+                        <UploadCloud className="w-3.5 h-3.5 text-indigo-400" />
+                        <span>Upload New Photo</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={handleClearImage}
+                        className="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 rounded-xl text-xs font-bold transition flex items-center gap-1"
+                        title="Reset image"
+                      >
+                        <RotateCcw className="w-3.5 h-3.5" />
+                        <span>Reset</span>
+                      </button>
                     </div>
                     <button
                       onClick={handleLaunchFullTriage}

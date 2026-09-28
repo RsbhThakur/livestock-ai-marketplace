@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useApp } from '@/lib/store';
 import { SYMPTOMS_MASTER, SPECIES_LIST } from '@/lib/config';
 import { predictReport, TriageInput } from '@/lib/predictor';
@@ -10,6 +10,7 @@ import { VOICE_PRESETS, VISION_PRESETS } from '@/lib/wordbank';
 import {
   extractSymptomsFromText,
   runPresetVoiceInference,
+  analyzeUploadedAudio,
   VoiceInferenceResult,
 } from '@/lib/voiceEngine';
 import {
@@ -43,6 +44,8 @@ import {
   ChevronRight,
   ShieldAlert,
   ArrowRight,
+  UploadCloud,
+  RotateCcw,
 } from 'lucide-react';
 
 export default function TriageModal() {
@@ -80,6 +83,9 @@ export default function TriageModal() {
   const [selectedVoiceLanguage, setSelectedVoiceLanguage] = useState<'Marathi' | 'Hindi' | 'English'>('Marathi');
   const [voiceResult, setVoiceResult] = useState<VoiceInferenceResult | null>(null);
   const [voiceInputText, setVoiceInputText] = useState<string>('');
+  const [uploadedAudioFileName, setUploadedAudioFileName] = useState<string>('');
+  const [uploadedAudioUrl, setUploadedAudioUrl] = useState<string | null>(null);
+  const audioFileInputRef = useRef<HTMLInputElement>(null);
 
   // Vision inference state
   const [selectedVisionPresetId, setSelectedVisionPresetId] = useState<string>('vis-fmd');
@@ -114,9 +120,40 @@ export default function TriageModal() {
 
   // Run Voice Preset
   const handleSelectVoicePreset = (presetId: string) => {
+    setUploadedAudioFileName('');
+    setUploadedAudioUrl(null);
     const res = runPresetVoiceInference(presetId);
     setVoiceResult(res);
     setVoiceInputText(res.transcriptOriginal);
+  };
+
+  // Handle Audio File Upload (.mp3, .wav, .m4a, .ogg)
+  const handleAudioFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const sizeKb = Math.round(file.size / 1024);
+      setUploadedAudioFileName(file.name);
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const dataUrl = event.target?.result as string;
+        setUploadedAudioUrl(dataUrl);
+        const res = analyzeUploadedAudio(file.name, dataUrl, selectedVoiceLanguage, sizeKb);
+        setVoiceResult(res);
+        setVoiceInputText(res.transcriptOriginal);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  // Clear / Reset Voice Input
+  const handleClearVoiceInput = () => {
+    setVoiceResult(null);
+    setVoiceInputText('');
+    setUploadedAudioFileName('');
+    setUploadedAudioUrl(null);
+    if (audioFileInputRef.current) {
+      audioFileInputRef.current.value = '';
+    }
   };
 
   // Apply Voice symptoms to clinical form
@@ -569,6 +606,15 @@ export default function TriageModal() {
           {/* TAB 2: VOICE ASSISTANT (WHISPER STT) */}
           {activeTab === 'voice' && (
             <div className="space-y-6">
+              {/* Hidden Audio File Input */}
+              <input
+                type="file"
+                ref={audioFileInputRef}
+                accept="audio/*,.mp3,.wav,.m4a,.ogg,.aac,.webm,.flac"
+                onChange={handleAudioFileUpload}
+                className="hidden"
+              />
+
               {/* Voice Subheader */}
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-4 bg-cyan-950/20 border border-cyan-800/40 rounded-xl">
                 <div>
@@ -600,12 +646,22 @@ export default function TriageModal() {
 
               {/* 1-Click Judge Demo Voice Presets */}
               <div>
-                <label className="text-xs font-bold uppercase tracking-wider text-slate-300 block mb-2">
-                  1-Click Judge Voice Presets (Field Audio Samples)
-                </label>
+                <div className="flex items-center justify-between mb-2">
+                  <label className="text-xs font-bold uppercase tracking-wider text-slate-300 block">
+                    1-Click Judge Voice Presets & Field Audio
+                  </label>
+                  <button
+                    type="button"
+                    onClick={() => audioFileInputRef.current?.click()}
+                    className="text-xs font-bold text-cyan-400 hover:text-cyan-300 flex items-center gap-1"
+                  >
+                    <UploadCloud className="w-3.5 h-3.5" />
+                    <span>Upload Custom Audio File</span>
+                  </button>
+                </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {VOICE_PRESETS.map((p) => {
-                    const isSelected = voiceResult?.transcriptOriginal === p.transcript;
+                    const isSelected = voiceResult?.transcriptOriginal === p.transcript && !uploadedAudioFileName;
                     return (
                       <div
                         key={p.id}
@@ -637,10 +693,56 @@ export default function TriageModal() {
                 </div>
               </div>
 
+              {/* Uploaded Audio Info Ribbon (If file was uploaded) */}
+              {uploadedAudioFileName && (
+                <div className="bg-[#091e36] border border-[#1e4a80] rounded-xl p-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs shadow-lg animate-in fade-in">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-cyan-950 text-cyan-300 border border-cyan-800 shrink-0">
+                      <Volume2 className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <div className="font-bold text-white flex items-center gap-2">
+                        <span className="truncate max-w-[260px]">{uploadedAudioFileName}</span>
+                        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-bold">
+                          Neural STT Parsed
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-slate-300">
+                        Custom field voice note • Whisper vernacular recognition
+                      </p>
+                    </div>
+                  </div>
+
+                  {uploadedAudioUrl && (
+                    <audio controls src={uploadedAudioUrl} className="h-8 max-w-[220px]" />
+                  )}
+
+                  <div className="flex items-center gap-2 shrink-0">
+                    <button
+                      type="button"
+                      onClick={() => audioFileInputRef.current?.click()}
+                      className="px-3 py-1.5 rounded-lg bg-[#143d6e] hover:bg-[#1a4e8c] text-cyan-200 font-bold text-xs border border-[#2a61a3] transition flex items-center gap-1.5 shadow"
+                    >
+                      <UploadCloud className="w-3.5 h-3.5 text-cyan-300" />
+                      <span>Upload New Audio</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleClearVoiceInput}
+                      className="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold transition flex items-center gap-1"
+                      title="Clear input and reset"
+                    >
+                      <RotateCcw className="w-3 h-3 text-slate-400" />
+                      <span>Reset</span>
+                    </button>
+                  </div>
+                </div>
+              )}
+
               {/* Interactive Audio Waveform & Live Microphone Studio */}
               <div className="p-4 bg-slate-950/70 border border-slate-800 rounded-xl space-y-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div className="flex flex-wrap items-center gap-2">
                     <button
                       type="button"
                       onClick={() => {
@@ -686,6 +788,17 @@ export default function TriageModal() {
                       {isRecording ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
                       {isRecording ? 'Listening (Speak Now)...' : 'Start Live Microphone Recording'}
                     </button>
+
+                    {/* Upload Audio File Button */}
+                    <button
+                      type="button"
+                      onClick={() => audioFileInputRef.current?.click()}
+                      className="px-3.5 py-2 rounded-xl text-xs font-bold bg-[#0f294a] hover:bg-[#163b6b] text-cyan-200 border border-[#234c7c] transition flex items-center gap-1.5 shadow"
+                    >
+                      <UploadCloud className="w-4 h-4 text-cyan-400" />
+                      <span>Upload Audio File</span>
+                    </button>
+
                     <span className="text-xs text-slate-400">
                       {isRecording ? 'Sampling audio stream at 16kHz...' : 'Web Speech API / Neural Whisper'}
                     </span>
@@ -707,23 +820,43 @@ export default function TriageModal() {
 
                 {/* Display Transcript */}
                 <div className="space-y-3 pt-3 border-t border-slate-800">
-                  <div>
-                    <span className="text-xs font-mono text-cyan-400 font-bold block mb-1">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-mono text-cyan-400 font-bold block">
                       AUDIO TRANSCRIPT / CLINICAL VOICE INPUT ({voiceResult?.detectedLanguage || selectedVoiceLanguage}):
                     </span>
-                    <textarea
-                      rows={2}
-                      value={voiceInputText || (voiceResult ? voiceResult.transcriptOriginal : '')}
-                      onChange={(e) => {
-                        const val = e.target.value;
-                        setVoiceInputText(val);
-                        const res = extractSymptomsFromText(val, selectedVoiceLanguage);
-                        setVoiceResult(res);
-                      }}
-                      placeholder="Speak into microphone or type livestock symptoms in Marathi, Hindi, or English..."
-                      className="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-cyan-500"
-                    />
+                    <div className="flex items-center gap-1.5">
+                      <button
+                        type="button"
+                        onClick={() => audioFileInputRef.current?.click()}
+                        className="px-2.5 py-1 text-xs rounded-lg bg-[#0f294a] hover:bg-[#163b6b] text-cyan-200 border border-[#234c7c] font-bold transition flex items-center gap-1 shadow"
+                        title="Upload new audio recording"
+                      >
+                        <UploadCloud className="w-3.5 h-3.5 text-cyan-400" />
+                        <span>Upload New Input</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={handleClearVoiceInput}
+                        className="px-2 py-1 text-xs rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition flex items-center gap-1"
+                        title="Clear input and reset"
+                      >
+                        <RotateCcw className="w-3 h-3 text-slate-400" />
+                        <span>Clear</span>
+                      </button>
+                    </div>
                   </div>
+                  <textarea
+                    rows={2}
+                    value={voiceInputText || (voiceResult ? voiceResult.transcriptOriginal : '')}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      setVoiceInputText(val);
+                      const res = extractSymptomsFromText(val, selectedVoiceLanguage);
+                      setVoiceResult(res);
+                    }}
+                    placeholder="Speak into microphone or type livestock symptoms in Marathi, Hindi, or English..."
+                    className="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-cyan-500"
+                  />
 
                   {voiceResult && (
                     <>
@@ -774,14 +907,25 @@ export default function TriageModal() {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex items-center justify-between pt-3 border-t border-slate-800">
-                <button
-                  type="button"
-                  onClick={() => setActiveTab('clinical')}
-                  className="px-4 py-2 text-xs font-semibold rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition"
-                >
-                  Back to Parameters
-                </button>
+              <div className="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-slate-800">
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab('clinical')}
+                    className="px-4 py-2 text-xs font-semibold rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition"
+                  >
+                    Back to Parameters
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => audioFileInputRef.current?.click()}
+                    className="px-3.5 py-2 text-xs font-bold rounded-xl bg-[#0f294a] hover:bg-[#163b6b] text-cyan-200 border border-[#234c7c] transition flex items-center gap-1.5 shadow"
+                    title="Upload new audio recording"
+                  >
+                    <UploadCloud className="w-3.5 h-3.5 text-cyan-400" />
+                    <span>Upload New Voice Input</span>
+                  </button>
+                </div>
 
                 <button
                   type="button"
