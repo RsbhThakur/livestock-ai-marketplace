@@ -27,19 +27,19 @@ export default function CategoryBar({
   ];
 
   return (
-    <div className="bg-[#081729] border-b border-[#1b3a61] sticky top-16 sm:top-20 z-30 shadow-md text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+    <div className="bg-[#0b1320] border-b border-[#1e3252] sticky top-20 sm:top-22 z-30 shadow-md text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           {/* Main Category Tabs */}
-          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
+          <div className="flex items-center gap-2.5 overflow-x-auto no-scrollbar py-0.5">
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap transition-all ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all shadow-sm ${
                   activeCategory === cat.id
-                    ? 'bg-[#153864] text-white shadow-sm border border-[#2d5f9c]'
-                    : 'bg-[#071324] text-slate-300 hover:bg-[#0c223d] hover:text-white border border-[#162e4f]'
+                    ? 'bg-[#0284c7] text-white border border-[#38bdf8]/50'
+                    : 'bg-[#131f33] text-slate-300 hover:bg-[#1a2b47] hover:text-white border border-[#1e3252]'
                 }`}
               >
                 {cat.icon}
@@ -49,16 +49,16 @@ export default function CategoryBar({
           </div>
 
           {/* Species Pills */}
-          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar shrink-0 text-xs">
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar shrink-0 text-xs">
             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mr-1 hidden md:inline">
               Species Filter:
             </span>
             <button
               onClick={() => setSelectedSpeciesFilter('all')}
-              className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all shadow-sm ${
                 selectedSpeciesFilter === 'all'
-                  ? 'bg-emerald-700 text-white shadow-sm'
-                  : 'bg-[#071324] text-slate-400 hover:text-white border border-[#162e4f]'
+                  ? 'bg-[#0284c7] text-white'
+                  : 'bg-[#131f33] text-slate-400 hover:text-white border border-[#1e3252]'
               }`}
             >
               All Species
@@ -67,10 +67,10 @@ export default function CategoryBar({
               <button
                 key={sp}
                 onClick={() => setSelectedSpeciesFilter(sp)}
-                className={`capitalize px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+                className={`capitalize px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all shadow-sm ${
                   selectedSpeciesFilter === sp
-                    ? 'bg-emerald-700 text-white shadow-sm'
-                    : 'bg-[#071324] text-slate-400 hover:text-white border border-[#162e4f]'
+                    ? 'bg-[#0284c7] text-white'
+                    : 'bg-[#131f33] text-slate-400 hover:text-white border border-[#1e3252]'
                 }`}
               >
                 {sp}

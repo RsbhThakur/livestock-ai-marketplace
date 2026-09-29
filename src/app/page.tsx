@@ -89,7 +89,7 @@ export default function Home() {
   });
 
   return (
-    <div className="flex-1 flex flex-col bg-[#061220] text-white min-h-screen">
+    <div className="flex-1 flex flex-col bg-[#0b1320] text-white min-h-screen">
       {/* 1. Global Header & Disclaimer */}
       <Header />
 
@@ -104,28 +104,28 @@ export default function Home() {
             <HeroBanner />
 
             {/* Flagship Interactive Multi-Modal AI Diagnostic Studio Section */}
-            <section id="ai-studio" className="py-12 md:py-16 border-b border-[#1b3a61] bg-[#071526] relative">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <section id="ai-studio" className="py-16 md:py-24 border-b border-[#1e3252] bg-[#0d1726] relative">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
                   <div>
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0a1e36] border border-[#234c7c] text-blue-200 text-xs font-bold mb-2">
+                    <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#131f33] border border-[#1e3252] text-[#38bdf8] text-xs font-bold mb-3 shadow-sm">
                       <Sparkles className="w-3.5 h-3.5 text-amber-300" />
                       <span>National Animal Disease Control Programme (NADCP)</span>
                     </div>
-                    <h2 className="text-2xl sm:text-3xl font-black text-white font-serif">
+                    <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
                       Kisan & Para-Veterinary AI Diagnostic Studio
                     </h2>
-                    <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-xl leading-relaxed">
+                    <p className="text-sm sm:text-base text-slate-300 mt-2 max-w-2xl leading-relaxed">
                       Speak cattle symptoms in Marathi, Hindi, or English, or upload lesion photos for instant CLIP ViT-L/14 classification and bounding box telemetry.
                     </p>
                   </div>
 
                   <button
                     onClick={() => setIsTriageOpen(true)}
-                    className="px-4 py-2.5 rounded-xl bg-[#0f2747] hover:bg-[#163864] text-blue-200 text-xs font-bold border border-[#224b7e] transition flex items-center gap-1.5 self-start sm:self-auto shadow-md"
+                    className="px-5 py-2.5 rounded-xl bg-[#131f33] hover:bg-[#1a2b47] text-white text-xs font-bold border border-[#1e3252] transition flex items-center gap-2 self-start sm:self-auto shadow-sm"
                   >
                     <span>Full Clinical Predictor Modal</span>
-                    <ChevronRight className="w-4 h-4" />
+                    <ChevronRight className="w-4 h-4 text-[#38bdf8]" />
                   </button>
                 </div>
 
@@ -140,25 +140,25 @@ export default function Home() {
             />
 
             {/* Marketplace Grid Section */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
               {/* Active Emergency Outbreak Alert Banner if in Nashik / High zone */}
-              <div className="p-4 bg-[#0a192f] border border-[#234c7c] rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-md">
-                <div className="flex items-center gap-3">
-                  <div className="p-2.5 bg-amber-600 text-slate-950 rounded-xl shrink-0 shadow-md">
-                    <AlertTriangle className="w-5 h-5" />
+              <div className="p-6 bg-[#131f33] border border-[#1e3252] rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-5 shadow-sm">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 bg-amber-600 text-slate-950 rounded-xl shrink-0 shadow-sm">
+                    <AlertTriangle className="w-6 h-6" />
                   </div>
                   <div>
                     <h4 className="text-xs font-bold uppercase tracking-wider text-amber-300">
                       State Bio-Security Advisory (Nashik & Pune Transit Corridors)
                     </h4>
-                    <p className="text-xs text-slate-300 mt-0.5">
+                    <p className="text-xs sm:text-sm text-slate-300 mt-1 leading-relaxed">
                       Inter-district livestock transit restricted to animals bearing verified digital RFID vaccination certificates.
                     </p>
                   </div>
                 </div>
                 <button
                   onClick={() => setIsTriageOpen(true)}
-                  className="px-4 py-2 bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-xs rounded-xl shrink-0 transition-all shadow-md"
+                  className="px-5 py-2.5 bg-[#0284c7] hover:bg-[#0369a1] text-white font-bold text-xs rounded-xl shrink-0 transition-all shadow-sm"
                 >
                   Verify Health Status →
                 </button>
@@ -167,10 +167,10 @@ export default function Home() {
               {/* Section A: Verified Livestock Listings */}
               {(activeCategory === 'all' || activeCategory === 'livestock') && (
                 <div>
-                  <div className="flex items-center justify-between mb-5">
+                  <div className="flex items-center justify-between mb-8">
                     <div>
-                      <h2 className="text-xl sm:text-2xl font-black text-white flex items-center gap-2 font-serif">
-                        <ShieldCheck className="w-6 h-6 text-emerald-400" />
+                      <h2 className="text-2xl sm:text-3xl font-extrabold text-white flex items-center gap-3">
+                        <ShieldCheck className="w-7 h-7 text-[#38bdf8]" />
                         <span>Pashu Aadhaar Certified Livestock Registry</span>
                       </h2>
                       <p className="text-xs text-slate-400 mt-1">

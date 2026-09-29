@@ -17,24 +17,24 @@ export default function JudgeQuickDemo() {
   };
 
   return (
-    <div className="bg-[#091a30] border-b border-[#1b3a61] py-2 px-4 relative z-20 text-white">
+    <div className="bg-[#091322] border-b border-[#182a44] py-3 px-4 sm:px-6 lg:px-8 relative z-20 text-white shadow-sm">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
           {/* Left Title & 1-Click Scenario Chips */}
-          <div className="flex flex-wrap items-center gap-2">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-950/60 border border-amber-600/40 text-amber-300 text-xs font-bold shrink-0">
-              <Award className="w-3.5 h-3.5 text-amber-400" />
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-950/50 border border-amber-600/40 text-amber-300 text-xs font-bold shrink-0 shadow-sm">
+              <Award className="w-4 h-4 text-amber-400" />
               <span>SIH 2026 Jury Bench • PS #26128</span>
             </div>
 
             {/* Quick 1-Click Action Chips */}
-            <div className="flex flex-wrap items-center gap-1.5">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
               {JUDGE_DEMO_SCENARIOS.map((sc, idx) => (
                 <button
                   key={sc.id}
                   onClick={() => triggerJudgeScenario(sc.id)}
                   title={sc.description}
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#0f2747] hover:bg-[#163864] text-slate-200 text-xs font-medium border border-[#224b7e] hover:border-blue-400 transition-all group"
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#131f33] hover:bg-[#1a2b47] text-slate-200 text-xs font-medium border border-[#1e3252] hover:border-[#38bdf8]/60 transition-all shadow-sm group"
                 >
                   <Play className="w-2.5 h-2.5 text-amber-400 fill-amber-400 group-hover:scale-110 transition-transform" />
                   <span className="font-bold text-slate-300 group-hover:text-white">
@@ -51,9 +51,9 @@ export default function JudgeQuickDemo() {
           {/* Expand/Collapse Toggle */}
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="text-xs font-medium text-slate-300 hover:text-white flex items-center gap-1 px-2.5 py-1 rounded-lg bg-[#0f2747] hover:bg-[#163864] border border-[#224b7e] shrink-0 self-end sm:self-auto transition-colors"
+            className="text-xs font-semibold text-slate-300 hover:text-white flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#131f33] hover:bg-[#1a2b47] border border-[#1e3252] shrink-0 self-end md:self-auto transition-colors shadow-sm"
           >
-            <FileCheck2 className="w-3.5 h-3.5 text-slate-400" />
+            <FileCheck2 className="w-3.5 h-3.5 text-[#38bdf8]" />
             <span>{isExpanded ? 'Hide Rubric' : 'Evaluation Rubric'}</span>
             {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
           </button>

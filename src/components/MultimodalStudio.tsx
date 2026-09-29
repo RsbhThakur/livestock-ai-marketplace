@@ -289,35 +289,35 @@ export default function MultimodalStudio({ onTriageComplete, compact = false }: 
   };
 
   return (
-    <div className="bg-[#091b30] border border-[#1b3a61] rounded-2xl shadow-2xl overflow-hidden text-white">
+    <div className="bg-[#131f33] border border-[#1e3252] rounded-2xl shadow-xl overflow-hidden text-white">
       {/* Studio Header Bar with Official National Protocol Branding */}
-      <div className="bg-gradient-to-r from-[#071526] via-[#0c2340] to-[#071526] px-6 py-5 border-b border-[#1b3a61] flex flex-wrap items-center justify-between gap-4">
-        <div className="flex items-center gap-3.5">
-          <div className="w-11 h-11 rounded-xl bg-[#0f294a] border border-[#234c7c] flex items-center justify-center text-emerald-400 font-black shadow-md">
+      <div className="bg-[#0f1b2d] px-6 sm:px-8 py-5 sm:py-6 border-b border-[#1e3252] flex flex-wrap items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 rounded-xl bg-[#0b1320] border border-[#1e3252] flex items-center justify-center text-[#38bdf8] font-black shadow-sm">
             <Stethoscope className="w-6 h-6" />
           </div>
           <div>
-            <div className="flex items-center gap-2">
-              <h3 className="text-base sm:text-lg font-black tracking-tight text-white flex items-center gap-2 font-serif">
+            <div className="flex items-center gap-2.5">
+              <h3 className="text-lg sm:text-xl font-bold tracking-tight text-white flex items-center gap-2.5">
                 Kisan & Para-Veterinary AI Diagnostic Desk
               </h3>
-              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-[#0f2747] text-blue-200 border border-[#234c7c]">
+              <span className="px-2.5 py-0.5 rounded-md text-[10px] font-bold uppercase bg-[#0b1320] text-[#38bdf8] border border-[#1e3252]">
                 NADCP Protocol #26128
               </span>
             </div>
-            <p className="text-xs text-slate-300 mt-0.5">
+            <p className="text-xs sm:text-sm text-slate-400 mt-1">
               Official zero-barrier vernacular voice triage and cattle lesion pathology scanner for rural field screening.
             </p>
           </div>
         </div>
 
         {/* Mode Selector Tabs */}
-        <div className="flex items-center gap-1.5 bg-[#061220] p-1.5 rounded-xl border border-[#1b3a61]">
+        <div className="flex items-center gap-1.5 bg-[#0b1320] p-1.5 rounded-xl border border-[#1e3252]">
           <button
             onClick={() => setActiveMode('voice')}
-            className={`px-4 py-2 rounded-lg text-xs font-bold transition flex items-center gap-2 ${
+            className={`px-4 py-2.5 rounded-lg text-xs font-bold transition flex items-center gap-2 ${
               activeMode === 'voice'
-                ? 'bg-emerald-700 text-white shadow-md'
+                ? 'bg-[#0284c7] text-white shadow-sm'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
@@ -326,9 +326,9 @@ export default function MultimodalStudio({ onTriageComplete, compact = false }: 
           </button>
           <button
             onClick={() => setActiveMode('vision')}
-            className={`px-4 py-2 rounded-lg text-xs font-bold transition flex items-center gap-2 ${
+            className={`px-4 py-2.5 rounded-lg text-xs font-bold transition flex items-center gap-2 ${
               activeMode === 'vision'
-                ? 'bg-[#1b4478] text-white shadow-md'
+                ? 'bg-[#0284c7] text-white shadow-sm'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
